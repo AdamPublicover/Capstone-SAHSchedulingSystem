@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Stay at Home Music Scheduler</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<!--  Daypilot library + JQuery (req'd) -->
+<script src="/scripts/daypilot/calendar.js"></script>
+<script src="/scripts/daypilot/common.js"></script>
+<script src="/scripts/jquery/jquery-3.2.1.min.js"></script>
+
+</head>
+<body>	
+
+	<h2> Stay at Home Music Scheduler: </h2>
+	<div id="dp"></div>
+	
+	<script type="text/javascript">
+		var dp = new DayPilot.Calendar("dp");
+		dp.backendUrl = '${pageContext.request.contextPath}/dps';
+		dp.viewType = "Week";
+		dp.Init();
+	</script>
+
+</body>
+</html>

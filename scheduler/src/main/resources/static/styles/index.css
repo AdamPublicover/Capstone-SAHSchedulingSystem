@@ -1,0 +1,33 @@
+html{
+	background: url(/images/piano.jpeg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.sahmform{
+	border-style: solid #7F7F7F 2px;
+	padding: 30px;
+}
+
+#login{
+	border-radius: 5px;
+	background-color: #FEFAE4;
+	padding: 30px;
+	opacity: 0.95;
+	filter: alpha(opacity=95);
+}
+
+#title{
+	border-radius: 5px;
+	padding: 15px;
+	opacity: 0.65;
+	filter: alpha(opacity=65);
+}
+
+.centre-login-form{
+	position: absolute;
+	margin-left: 10%;
+	margin-top: 5%;
+}
