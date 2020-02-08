@@ -1,9 +1,9 @@
 package com.sahm.scheduler.model;
-import org.daypilot.ui.DayPilotCalendar;
+//import org.daypilot.ui.DayPilotCalendar;
 
-public class DPCalendar extends DayPilotCalendar {
+public class DPCalendar { // extends DayPilotCalendar
 
-	@Override
+	//@Override
 	public void onInit() throws Exception {
 		
 		//https://java.daypilot.org/calendar-tutorial/
