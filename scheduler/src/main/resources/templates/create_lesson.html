@@ -59,7 +59,7 @@
 		<tr>
 			<th>
 				<div id="lesson">
-					<form>						
+					<form action="/updateJSON" method="POST">						
 			  			<div class="form-group">
 			  				<label for="lessonNameInput">Lesson Name</label>
 			  				<input type="text" class="form-control" id="lessonNameInput">
@@ -89,6 +89,16 @@
 			  						<a class="dropdown-item">Teacher 1</a>
 			  						<a class="dropdown-item">Teacher 2</a>
 			  					</div>
+			  				</div>
+			  			</div>
+			  			<div class="row">
+			  				<div class="col">
+			  					<label for="start">Start Time</label>
+			  					<input type="datetime-local" name="start"></input>
+			  				</div>
+			  				<div class="col form-inline">
+								<label for="length">Duration    </label>
+								<input type="text" class="form-control" name="duration">
 			  				</div>
 			  			</div>
 			  			<div class="form-group">

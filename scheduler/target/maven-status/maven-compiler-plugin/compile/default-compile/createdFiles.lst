@@ -1,6 +1,7 @@
 com\sahm\scheduler\model\entity\Teacher.class
 com\sahm\scheduler\model\entity\Parent.class
 com\sahm\scheduler\controllers\CreateLessonController.class
+com\sahm\scheduler\viewConfiguration.class
 com\sahm\scheduler\model\entity\Admin.class
 com\sahm\scheduler\controllers\CalendarController.class
 com\sahm\scheduler\model\entity\Instrument.class
