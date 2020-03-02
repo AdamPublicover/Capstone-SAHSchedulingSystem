@@ -1,4 +1,4 @@
-package com.sahm.scheduler.Entity;
+package com.sahm.scheduler.model.entity;
 
 import java.util.List;
 

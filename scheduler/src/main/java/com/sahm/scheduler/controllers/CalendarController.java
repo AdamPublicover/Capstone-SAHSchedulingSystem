@@ -19,16 +19,4 @@ private static final long serialVersionUID = 1L;
 	public String hello(Model model) {
 		return "calendar";
 	}
-	
-	@RequestMapping(value="/calendar", method=RequestMethod.POST)
-	public void doPost(HttpServletRequest request, HttpServletResponse response) {
-		
-		/*
-		DayPilotCalendar dp = new DPCalendar();
-		
-		
-		dp.process(request, response); 
-		*/
-	}
-
 }

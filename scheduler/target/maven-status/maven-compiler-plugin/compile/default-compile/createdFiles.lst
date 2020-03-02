@@ -1,6 +1,9 @@
-com\sahm\scheduler\controllers\CalendarController.class
-com\sahm\scheduler\controllers\HomeController.class
+com\sahm\scheduler\model\entity\Teacher.class
+com\sahm\scheduler\model\entity\Parent.class
 com\sahm\scheduler\controllers\CreateLessonController.class
+com\sahm\scheduler\model\entity\Admin.class
+com\sahm\scheduler\controllers\CalendarController.class
+com\sahm\scheduler\model\entity\Instrument.class
+com\sahm\scheduler\controllers\HomeController.class
 com\sahm\scheduler\SchedulerApplication.class
 com\sahm\scheduler\ServletInitializer.class
-com\sahm\scheduler\model\DPCalendar.class

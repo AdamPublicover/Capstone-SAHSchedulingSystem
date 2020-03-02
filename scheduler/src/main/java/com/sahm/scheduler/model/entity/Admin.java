@@ -1,4 +1,4 @@
-package com.sahm.scheduler.Entity;
+package com.sahm.scheduler.model.entity;
 
 public class Admin {
 	
@@ -8,6 +8,8 @@ public class Admin {
 		email = e;
 		password = p;
 	}
+	
+	public Admin () {};
 	
 	public void setEmail(String e) {
 		email = e;

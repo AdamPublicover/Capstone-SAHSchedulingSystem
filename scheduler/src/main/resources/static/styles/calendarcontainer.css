@@ -1,0 +1,19 @@
+html{
+	background: url(/images/piano.jpeg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#myContainer{
+	position: absolute;
+	margin-left: 10%;
+	margin-right: 3%;
+	margin-top: 5%;
+	margin-bottom: 2%;
+	background-color: #FEFAE4;
+	padding: 30px;
+	opacity: 0.95;
+	filter: alpha(opacity=95);
+}

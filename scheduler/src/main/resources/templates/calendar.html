@@ -1,27 +1,106 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Stay at Home Music Scheduler</title>
+<title>Stay at Home Music Scheduler</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-<!--  Daypilot library + JQuery (req'd) -->
-<script src="/scripts/daypilot/calendar.js"></script>
-<script src="/scripts/daypilot/common.js"></script>
 <script src="/scripts/jquery/jquery-3.2.1.min.js"></script>
+
+<!--  full calendar -->
+<link rel="stylesheet" href="/styles/fullcalendar/core.css" />
+<link rel="stylesheet" href="/styles/fullcalendar/daygrid.css" />
+<link rel="stylesheet" href="/styles/fullcalendar/timegrid.css" />
+
+<script src="/scripts/fullcalendar/core/main.js"></script>
+<script src="/scripts/fullcalendar/daygrid/main.js"></script>
+<script src="/scripts/fullcalendar/timegrid/main.js"></script>
+
+<link rel="stylesheet" href="/styles/calendarcontainer.css">
+
+<script>
+
+	document.addEventListener('DOMContentLoaded', function() {
+	    var calendarEl = document.getElementById('calendar');
+	
+	    var calendar = new FullCalendar.Calendar(calendarEl, {
+	      plugins: [ 'timeGrid' ],
+	      defaultView: 'timeGridWeek',
+	      events: [
+	    	  {
+	    		  id: 'a',
+	    		  title: 'Demo to Ms. Shah',
+	    		  start: '2020-03-02T15:00:00',
+	    		  end: '2020-03-02T15:30:00'
+	    	  },
+	    	  {
+	    		  id: 'b',
+	    		  title: 'School',
+	    		  start: '2020-03-03T12:00:00',
+	    		  end: '2020-03-03T18:00:00'
+	    	  },
+	    	  {
+	    		  id: 'c',
+	    		  title: 'Lesson: Stacey Munroe',
+	    		  start: '2020-03-03T18:45:00',
+	    		  end: '2020-03-03T19:30:00'
+	    	  },
+	    	  {
+	    		  id: 'd',
+	    		  title: 'School',
+	    		  start: '2020-03-04T08:00:00',
+	    		  end: '2020-03-04T14:00:00'
+	    	  },
+	    	  {
+	    		  id: 'e',
+	    		  title: 'Lesson: Ellie Ryu',
+	    		  start: '2020-03-04T16:30:00',
+	    		  end: '2020-03-04T17:30:00'
+	    	  }
+	      ],
+	      minTime: "08:00:00",
+	      maxTime: "22:00:00"
+	    });
+	
+	    calendar.render();
+	  });
+
+</script>
 
 </head>
 <body>	
 
-	<h2> Stay at Home Music Scheduler: </h2>
-	<div id="dp"></div>
+	<nav class = "navbar navbar-expand-lg navbar-light bg-light">
+	    <a class="navbar-brand" href="#">Stay at Home Music Scheduler</a>
+	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    		<ul class="navbar-nav mr-auto">
+	      		<li class="nav-item active">
+	        		<a class="nav-link" href="/calendar">Calendar<span class="sr-only">(current)</span></a>
+	      		</li>
+	      		<li class="nav-item">
+	        		<a class="nav-link" href="/create_lesson">Create a Lesson</a>
+	      		</li>
+	      		<li class="nav-item">
+	        		<a class="nav-link" href="/">Set Availability</a>
+	      		</li>
+	      		<li class="nav-item">
+	        		<a class="nav-link" href="/">Log out</a>
+	      		</li>
+	    	</ul>
+		    <form class="form-inline my-2 my-lg-0">
+      			<input class="form-control mr-sm-2" type="search" placeholder="Instrument, Lastname ..." aria-label="Search">
+      			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filter</button>
+    		</form>
+  		</div>
+	</nav>
+
+	<div id='myContainer'>
+		<div id = 'calendar'></div>
+	</div>
 	
-	<script type="text/javascript">
-		var dp = new DayPilot.Calendar("dp");
-		dp.backendUrl = '${pageContext.request.contextPath}/dps';
-		dp.viewType = "Week";
-		dp.Init();
-	</script>
 
 </body>
 </html>

@@ -15,5 +15,4 @@ public class CreateLessonController {
 	public String hello(Model model) {
 		return "create_lesson";
 	}
-
 }
