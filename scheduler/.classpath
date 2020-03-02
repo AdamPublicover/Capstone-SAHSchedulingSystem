@@ -29,6 +29,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-13.0.1/lib/javax.json-1.0.4.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
