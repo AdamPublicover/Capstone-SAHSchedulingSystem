@@ -1,8 +1,18 @@
 package com.sahm.scheduler.model.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+public class Admin { }
+/*
+@Entity
 public class Admin {
 	
-	private String email, password; 
+	@Id
+	@Column(name = "email", nullable=false, unique=true)
+	private String email; 
+	private String password; 
 	
 	public Admin(String e, String p) {
 		email = e;
@@ -31,3 +41,4 @@ public class Admin {
 		return ("Email: " + email + "\nPassword: " + password);
 	}
 }
+*/

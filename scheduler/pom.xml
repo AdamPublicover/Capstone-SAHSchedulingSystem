@@ -20,17 +20,21 @@
 	</properties>
 
 	<dependencies>
-		<!-- These have been commented out because we won't need these artifacts until
-			 We have included a database within our project. 
-			 
+		 
+			 <!-- 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
+		 -->
+		<!-- These have been commented out because we won't need these artifacts until
+			 We have included a database within our project.
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>

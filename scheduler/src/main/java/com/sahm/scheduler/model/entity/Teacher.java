@@ -1,12 +1,36 @@
 package com.sahm.scheduler.model.entity;
 
-//@Entity
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+public class Teacher {  }
+/*
+@Entity
+@Access(AccessType.FIELD)
 public class Teacher {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="id", nullable=false, unique=true)
+	private int id;
+	
 	private String firstName;
 	private String lastName;
+	
+	@Column(name="email", nullable=false)
 	private String email;
-	private int id;
+	
+	@Column(name="password", nullable=false)
     private String password;
+    
+    @Enumerated(EnumType.STRING)
     private Instrument instrument;
 
     public Teacher(String firstName, String lastName, int i, String e, String p, Instrument in){
@@ -55,3 +79,4 @@ public class Teacher {
         return s;
     }
 }
+*/

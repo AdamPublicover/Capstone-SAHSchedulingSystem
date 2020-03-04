@@ -2,14 +2,36 @@ package com.sahm.scheduler.model.entity;
 
 import java.util.List;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+public class Parent { }
+/*
+@Entity
+@Access(AccessType.FIELD)
 public class Parent {
+	
+	@Id
+	@Column(name="email", nullable=false, unique=true)
 	private String email;
+	
+	@Column(name="password", nullable=false)
 	private String password;
+	
+	@Column(name="firstName", nullable=true)
 	private String firstName;
+	
+	@Column(name="lastName", nullable=true)
 	private String lastName;
+	
+	@Column(name="Address", nullable=false)
 	private String address;
-	private String phoneNum;
-	private List<String> students;
+	
+	@Column(name="Phone", nullable=false)
+	private String Phone;
 	
 	public Parent() {
 		setEmail("");
@@ -61,18 +83,11 @@ public class Parent {
 	}
 
 	public String getPhoneNum() {
-		return phoneNum;
+		return this.Phone;
 	}
 
 	public void setPhoneNum(String phoneNum) {
-		this.phoneNum = phoneNum;
-	}
-
-	public List<String> getStudents() {
-		return students;
-	}
-
-	public void setStudents(List<String> students) {
-		this.students = students;
+		this.Phone = phoneNum;
 	}
 }
+*/
