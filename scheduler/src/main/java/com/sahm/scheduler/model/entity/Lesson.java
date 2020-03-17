@@ -1,7 +1,7 @@
 package com.sahm.scheduler.model.entity;
 
 import java.util.Date;
-
+/*
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
@@ -13,7 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+*/
 public class Lesson { }
 
 /*

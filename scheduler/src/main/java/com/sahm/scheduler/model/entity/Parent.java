@@ -1,13 +1,13 @@
 package com.sahm.scheduler.model.entity;
 
 import java.util.List;
-
+/*
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
+*/
 public class Parent { }
 /*
 @Entity

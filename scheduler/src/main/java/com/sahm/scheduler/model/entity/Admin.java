@@ -1,8 +1,8 @@
 package com.sahm.scheduler.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+//import javax.persistence.Column;
+//import javax.persistence.Entity;
+//import javax.persistence.Id;
 
 public class Admin { }
 /*

@@ -1,5 +1,5 @@
 package com.sahm.scheduler.model.entity;
-
+/*
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
@@ -9,7 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+*/
 public class Teacher {  }
 /*
 @Entity

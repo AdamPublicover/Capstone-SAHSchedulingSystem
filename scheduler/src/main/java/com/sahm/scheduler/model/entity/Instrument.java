@@ -1,14 +1,15 @@
 package com.sahm.scheduler.model.entity;
 
-import javax.persistence.Column;
+/*import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+*/
 
-@Entity(name = "Instrument")
+//@Entity(name = "Instrument")
 public class Instrument {
-	
+	/*
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id", nullable=false, unique=true)
@@ -36,5 +37,5 @@ public class Instrument {
 		
 		return out;
 	}
-	
+	*/
 }
