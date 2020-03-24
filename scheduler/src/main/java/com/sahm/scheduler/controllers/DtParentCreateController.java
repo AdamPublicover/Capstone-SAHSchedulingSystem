@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sahm.scheduler.model.entity.DtInstrument;
 import com.sahm.scheduler.model.entity.DtLesson;
+import com.sahm.scheduler.model.entity.DtLessonTime;
 import com.sahm.scheduler.model.entity.DtParent;
 import com.sahm.scheduler.model.entity.DtPassword;
 import com.sahm.scheduler.model.entity.DtTeacher;
 import com.sahm.scheduler.model.entity.DtTeacherAvailability;
 import com.sahm.scheduler.model.repository.DtInstrumentRepository;
 import com.sahm.scheduler.model.repository.DtLessonRepository;
+import com.sahm.scheduler.model.repository.DtLessonTimeRepository;
 import com.sahm.scheduler.model.repository.DtParentRepository;
 import com.sahm.scheduler.model.repository.DtPasswordRepository;
 import com.sahm.scheduler.model.repository.DtTeacherAvailabilityRepository;
@@ -23,6 +25,17 @@ import com.sahm.scheduler.model.repository.DtTeacherRepository;
 @Controller
 @RequestMapping(path="/CreateParent")
 public class DtParentCreateController {
+	
+	/*
+	 * NOTE:
+	 * 
+	 * This is a file created mostly for database insert testing.
+	 * 
+	 * It will be saved so that the methods here can be implemented in the future.
+	 * 
+	 * Eventually, this should be deleted.
+	 * 
+	 */
 	
 	@Autowired
 	private DtParentRepository parentRepository;
@@ -42,10 +55,14 @@ public class DtParentCreateController {
 	@Autowired
 	private DtPasswordRepository passwordRepository;
 	
+	@Autowired
+	private DtLessonTimeRepository dtLessonTimeRepository;
+	
 	
 	@PostMapping(path="/addDtParent")
 	public @ResponseBody String addNewUser () {
 		
+		/*
 		// Parent insert test
 		DtParent parent = new DtParent();
 		parent.setEmail("example@hotmail.com");
@@ -65,7 +82,7 @@ public class DtParentCreateController {
 		teacher.setLName("Publicover");
 		
 		teacherRepository.save(teacher);
-		
+		*/
 		
 		/* Instrument insert test
 		DtInstrument instrument = new DtInstrument();
@@ -74,7 +91,7 @@ public class DtParentCreateController {
 		
 		instrumentRepository.save(instrument);
 		*/
-		
+		/*
 		// Lesson insert test
 		DtLesson lesson = new DtLesson();
 		lesson.setDiInstrumentId(1);
@@ -106,7 +123,14 @@ public class DtParentCreateController {
 		dtPassword.setDiAccountType(2);
 		
 		passwordRepository.save(dtPassword);
+		*/
 		
+		DtLessonTime dtLessonTime = new DtLessonTime();
+		dtLessonTime.setDiLessonId(4);
+		dtLessonTime.setDiLength(60);
+		dtLessonTime.setDdLessonDate("2020-03-24 16:00:00.000");
+		
+		dtLessonTimeRepository.save(dtLessonTime);
 		
 		
 		return "Saved";
