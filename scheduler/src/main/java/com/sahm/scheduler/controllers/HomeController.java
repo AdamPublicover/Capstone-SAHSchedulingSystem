@@ -18,6 +18,8 @@ public class HomeController {
 	
 	@RequestMapping(value="/login")
 	public String login(Model model) {
+		
+		
 		return "calendar";
 	}
 	
