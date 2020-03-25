@@ -52,8 +52,8 @@ public class DtParentCreateController {
 	@Autowired
 	private DtTeacherAvailabilityRepository teacherAvailabilityRepository;
 	
-	@Autowired
-	private DtPasswordRepository passwordRepository;
+	//@Autowired
+	//private DtPasswordRepository passwordRepository;
 	
 	@Autowired
 	private DtLessonTimeRepository dtLessonTimeRepository;

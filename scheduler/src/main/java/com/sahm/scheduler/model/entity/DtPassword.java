@@ -5,19 +5,22 @@ import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="DtPassword")
 @Access(AccessType.FIELD)
+//@NamedQuery(name="DtPassword.findByDsEmail",
+//query = "SELECT p FROM DtPassword p WHERE p.DsEmail = ?1")
 public class DtPassword {
 	
 	@Id
 	@Column(name="DsEmail", nullable=false, unique=true)
-	private String DsEmail;
+	private String email;
 	
 	@Column(name="DsPassword", nullable=false)
-	private String DsPassword;
+	private String password;
 	
 	// IMPORTANT NOTE ->
 	// THE ACCOUNT TYPE CORRESPONDS TO THE USER'S STATUS - I.E.:
@@ -32,11 +35,16 @@ public class DtPassword {
 	
 	public DtPassword() { };
 	
-	public void setDsEmail(String dsEmail) { this.DsEmail = dsEmail; }
-	public void setDsPassword(String dsPassword) { this.DsPassword = dsPassword; }
+	public void setDsEmail(String dsEmail) { this.email = dsEmail; }
+	public void setDsPassword(String dsPassword) { this.password = dsPassword; }
 	public void setDiAccountType(int diAccountType) { this.DiAccountType = diAccountType; }
-	public String getDsEmail() { return this.DsEmail; } 
-	public String getDsPassword() { return this.DsPassword; }
+	public String getDsEmail() { return this.email; } 
+	public String getDsPassword() { return this.password; }
 	public int getDiAccountType() { return this.DiAccountType; }
+	
+	
+	public String toString() {
+		return this.email + "\n" + this.password;
+	}
 
 }
