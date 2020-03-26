@@ -37,6 +37,7 @@ public class HomeController {
 			if (password.equals(DsPassword)) {
 				
 				request.getSession().setAttribute("userEmail", email);
+				request.getSession().setAttribute("AccountType", dtPassword.getDiAccountType());
 				
 				model.addAttribute("AccountType", dtPassword.getDiAccountType());
 				model.addAttribute("userEmail", email);

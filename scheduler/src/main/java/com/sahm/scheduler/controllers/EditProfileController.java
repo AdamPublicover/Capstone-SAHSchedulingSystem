@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sahm.scheduler.model.entity.DtParent;
 import com.sahm.scheduler.model.entity.DtTeacher;
+import com.sahm.scheduler.model.repository.DtParentRepository;
 import com.sahm.scheduler.model.repository.DtTeacherRepository;
 
 @Controller
@@ -32,6 +34,9 @@ public class EditProfileController {
 	
 	@Autowired
 	DtTeacherRepository dtTeacherRepository;
+	
+	@Autowired
+	DtParentRepository dtParentRepository;
 	
 	@RequestMapping(value="/edit_profile")
 	public String hello(Model model) {
@@ -47,14 +52,13 @@ public class EditProfileController {
 			@RequestParam(value="address", required=false) String address,
 			@RequestParam(value="phone", required=false) String phone ) {
 		
-		String TeacherEmail = (String) request.getSession().getAttribute("userEmail");
 		
-		try {
-			DtTeacher account = dtTeacherRepository.findByDsEmail(TeacherEmail);
-			
-			System.out.println(email);
-			System.out.println(firstName);
-			System.out.println(lastName);
+		String userEmail = (String) request.getSession().getAttribute("userEmail");
+		int accountType = (int) request.getSession().getAttribute("AccountType");
+		
+		if (accountType == 2) {
+			// IF ITS A TEACHER
+			DtTeacher account = dtTeacherRepository.findByDsEmail(userEmail);
 			
 			if (email != null && email != "") { account.setEmail(email); }
 			if (firstName != null && firstName != "") { account.setFName(firstName); }
@@ -62,14 +66,22 @@ public class EditProfileController {
 			
 			dtTeacherRepository.save(account);
 			
-			return "calendar";
-		
-		} catch ( Exception e ) {
-			System.out.println("Number Format Exception?");
-			System.out.println(e);
-			return "index";
+		} else if (accountType == 3) {
+			// IF ITS A PARENT
+			DtParent account = dtParentRepository.findByDsEmail(userEmail);
+			
+			if (email != null && email != "") { account.setEmail(email); }
+			if (firstName != null && firstName != "") { account.setFirstName(firstName); }
+			if (lastName != null && lastName != "") {account.setLastName(lastName); }
+			if (address != null && address != "") { account.setAddress(address); }
+			if (phone != null && phone != "" ) { account.setPhoneNum(phone); }
+			
+			dtParentRepository.save(account);
 		}
 		
+		
+		
+		return "calendar";
 		
 	}
 	
