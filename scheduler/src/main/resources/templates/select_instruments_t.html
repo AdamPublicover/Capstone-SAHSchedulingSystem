@@ -1,96 +1,131 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<title>Stay at Home Music Scheduler</title>
+	<title>Stay at Home Music Scheduler</title>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href="/styles/create_lesson.css">
+	<link rel="stylesheet" href="/styles/create_lesson.css">
 </head>
+
 <body>
 
-	<nav class = "navbar navbar-expand-lg navbar-light bg-light">
-	    <a class="navbar-brand" href="#">Stay at Home Music Scheduler</a>
-	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	      <span class="navbar-toggler-icon"></span>
-	    </button>
-	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    		<ul class="navbar-nav mr-auto">
-	      		<li class="nav-item">
-	        		<a class="nav-link" href="/calendar">Calendar</a>
-	      		</li>
-	      		<li class="nav-item active">
-	        		<a class="nav-link" href="/create_lesson">Create a Lesson</a>
-	      		</li>
-	      		<li class="nav-item">
-	        		<a class="nav-link" href="/set_avail">Set Availability</a>
-				</li>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="/calendar">Stay at Home Music Scheduler</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					  Time Off
+					<a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Teacher
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="/time_off_t">Teacher View - Make Requests</a>
-						<a class="dropdown-item" href="#">Owner View - View Requests</a>
+						<a class="dropdown-item" href="/calendar">Calendar</a>
+						<a class="dropdown-item" href="/edit_profile">Edit Profile</a>
+						<a class="dropdown-item" href="/create_lesson">Create Lesson</a>
+						<a class="dropdown-item" href="/set_avail">Set Availability</a>
+						<a class="dropdown-item active">Set Instruments</a>
+						<a class="dropdown-item" href="/time_off_t">Time Off Requests</a>
 					</div>
 				</li>
-	      		<li class="nav-item">
-	        		<a class="nav-link" href="/">Log out</a>
-	      		</li>
-	    	</ul>
-		    <form class="form-inline my-2 my-lg-0">
-      			<input class="form-control mr-sm-2" type="search" placeholder="Instrument, Lastname ..." aria-label="Search">
-      			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filter</button>
-    		</form>
-  		</div>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Owner
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="/calendar">Calendar</a>
+						<a class="dropdown-item" href="/create_profile_a">Create Profile</a>
+						<a class="dropdown-item" href="/create_lesson">Create Lesson</a>
+						<a class="dropdown-item" href="#">View All Requests</a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Parent
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="/calendar">Calendar</a>
+						<a class="dropdown-item" href="/edit_profile">Edit Profile</a>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/">Log out</a>
+				</li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="search" placeholder="Instrument, Lastname ..."
+					aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filter</button>
+			</form>
+		</div>
 	</nav>
 
 
-	<table class="centre-login-form">		
-		<tr>	
-			<th>				
+	<table class="centre-login-form">
+		<tr>
+			<th>
 				<div class="jumbotron jumbotron-fluid" id="title">
-				
+
 					<!-- Beth: right now this 'Back' button takes you to index.html, will take us back to the calendar in the future -->
 					<form action="/" method="get">
-						<button type="submit" class="btn btn-primary">Back</button>	
-					</form>	
-													
+						<button type="submit" class="btn btn-primary">Back</button>
+					</form>
+
 					<h1 class="display-4">Select Instruments</h1>
 					<p class="lead">Select all of the instruments that you can play! Ensure the information
-									is correct and click 'Submit' to confirm.</p>
+						is correct and click 'Submit' to confirm.</p>
 				</div>
 			</th>
 		</tr>
 		<tr>
 			<th>
 				<div id="lesson">
-					<form action="/updateJSON" method="POST">						
+					<form action="/select_instruments_t/update_instruments" method="POST">						
 			  			<div class="form-group">
 			  				<p>Select all that apply:</p>
-			  				<input type="radio" id="guitar" name="guitar" value="guitar">
+			  				<input type="checkbox" id="guitar" name="guitar" value="guitar">
 			  				<label for="guitar">Guitar</label><br>
-			  				<input type="radio" id="piano" name="piano" value="piano">
+			  				<input type="checkbox" id="piano" name="piano" value="piano">
 			  				<label for="piano">Piano</label><br>
-			  				<input type="radio" id="ukulele" name="ukulele" value="ukulele">
+			  				<input type="checkbox" id="ukulele" name="ukulele" value="ukulele">
 			  				<label for="ukulele">Ukulele</label><br>
-			  				<input type="radio" id="drums" name="drums" value="drums">
+			  				<input type="checkbox" id="drums" name="drums" value="drums">
 			  				<label for="drums">Drums</label><br>
-			  				<input type="radio" id="mandolin" name="mandolin" value="mandolin">
+			  				<input type="checkbox" id="mandolin" name="mandolin" value="mandolin">
 			  				<label for="mandolin">Mandolin</label><br>
-			  				<input type="radio" id="clarinet" name="clarinet" value="clarinet">
-			  				<label for="clarinet">Clarinet</label><br>
+			  				<input type="checkbox" id="vocals" name="vocals" value="vocals">
+			  				<label for="vocals">Vocals</label><br>
+			  				<input type="checkbox" id="trumpet" name="trumpet" value="trumpet">
+			  				<label for="trumpet">Trumpet</label><br>
+			  				<input type="checkbox" id="violin" name="violin" value="violin">
+			  				<label for="violin">Violin</label><br>
+			  				<input type="checkbox" id="bass" name="bass" value="bass">
+			  				<label for="bass">Bass</label><br>
 			  			</div>
 			  			<!-- Beth: right now this button doesn't submit, will once db and calendar implemented -->
 			  			<button type="submit" class="btn btn-primary">Submit</button>
-					</form>
 				</div>
 			</th>
 		</tr>
 	</table>
 
 </body>
+
 </html>

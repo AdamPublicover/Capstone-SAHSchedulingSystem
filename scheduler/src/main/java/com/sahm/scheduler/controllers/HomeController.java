@@ -25,14 +25,22 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(Model model, @RequestParam("email") String email, @RequestParam("password") String password) {
+	public String login(Model model, 
+			@RequestParam("email") String email, 
+			@RequestParam("password") String password,
+			HttpServletRequest request) {
 		
 		try {
 			DtPassword dtPassword = dtPasswordRepository.findByEmail(email);
 			String DsPassword = dtPassword.getDsPassword();
 			
 			if (password.equals(DsPassword)) {
+				
+				request.getSession().setAttribute("userEmail", email);
+				request.getSession().setAttribute("AccountType", dtPassword.getDiAccountType());
+				
 				model.addAttribute("AccountType", dtPassword.getDiAccountType());
+				model.addAttribute("userEmail", email);
 				return "calendar";
 			}			
 			
@@ -43,31 +51,4 @@ public class HomeController {
 		
 		return "index";
 	}
-	
-	/*
-	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(HttpServletRequest request, HttpServletResponse response){
-		
-		System.out.println("login method has been hit");
-		
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		
-		System.out.println(email + ", " + password);
-		
-		if (email == "admin@isp.net") {
-			System.out.println("Credentials correct . . . ");
-			
-			HttpSession session = request.getSession(true);
-			session.setAttribute("user", "Elliott");
-			
-			try { response.sendRedirect("calendar"); } 
-			catch ( Exception e) { System.out.println(e + " happened"); }
-			
-			return "calendar";
-		}
-		return "index";
-	}
-	*/
-
 }

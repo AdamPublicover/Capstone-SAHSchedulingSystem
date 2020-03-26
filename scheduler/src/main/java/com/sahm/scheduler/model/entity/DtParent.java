@@ -16,7 +16,7 @@ public class DtParent {
 	
 	@Id
 	@Column(name="DsEmail", nullable=false, unique=true)
-	private String DsEmail;
+	private String dsEmail;
 	
 	@Column(name="DsFirstName", nullable=true)
 	private String DsFirstName;
@@ -33,11 +33,11 @@ public class DtParent {
 	public DtParent() { }
 
 	public String getEmail() {
-		return this.DsEmail;
+		return this.dsEmail;
 	}
 
 	public void setEmail(String email) {
-		this.DsEmail = email;
+		this.dsEmail = email;
 	}
 
 	public String getAddress() {

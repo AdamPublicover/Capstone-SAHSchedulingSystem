@@ -15,15 +15,15 @@ public class TTeacherPlaysInstrument {
 	@Id
 	@Column(name="tTeacherPlaysInstrumentId", nullable=false, unique=true)
 	private int tTeacherPlaysInstrumentId;
-	private int DtInstrumentId;
-	private String DsTeacherEmail;
+	private int DiInstrumentId;
+	private String DsEmail;
 	
 	public TTeacherPlaysInstrument() {}
 	
-	public void setDtInstrumentId(int DtInstrumentId) { this.DtInstrumentId = DtInstrumentId; }
-	public void setDsTeacherEmail(String DsTeacherEmail) { this.DsTeacherEmail = DsTeacherEmail; }
+	public void setDtInstrumentId(int DtInstrumentId) { this.DiInstrumentId = DtInstrumentId; }
+	public void setDsTeacherEmail(String DsTeacherEmail) { this.DsEmail = DsTeacherEmail; }
 	
 	public int gettTeacherPlaysInstrumentId() { return this.tTeacherPlaysInstrumentId; }
-	public int getDtInstrumentId() { return this.DtInstrumentId; }
-	public String DsTeacherEmail() { return this.DsTeacherEmail; }
+	public int getDtInstrumentId() { return this.DiInstrumentId; }
+	public String DsTeacherEmail() { return this.DsEmail; }
 }

@@ -1,8 +1,0 @@
-com\sahm\scheduler\viewConfiguration.class
-com\sahm\scheduler\controllers\HomeController.class
-com\sahm\scheduler\controllers\SetAvailController.class
-com\sahm\scheduler\controllers\TimeOffController.class
-com\sahm\scheduler\SchedulerApplication.class
-com\sahm\scheduler\controllers\CreateLessonController.class
-com\sahm\scheduler\controllers\CalendarController.class
-com\sahm\scheduler\ServletInitializer.class
