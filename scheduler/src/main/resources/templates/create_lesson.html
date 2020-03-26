@@ -97,47 +97,40 @@
 		<tr>
 			<th>
 				<div id="lesson">
-					<form action="/updateJSON" method="POST">
-						<div class="form-group">
-							<label for="lessonNameInput">Lesson Name</label>
-							<input type="text" class="form-control" id="lessonNameInput">
-						</div>
-						<div class="form-group">
-							<label for="instruments">Instrument Type</label>
-							<div class="dropdown">
-								<button class="btn btn-secondary dropdown-toggle" type="button" id="instruments"
-									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Instrument
-								</button>
-								<div class="dropdown-menu">
-									<a class="dropdown-item">Vocal</a>
-									<a class="dropdown-item">Violin</a>
-									<a class="dropdown-item">Piano</a>
-									<a class="dropdown-item">Guitar</a>
-								</div>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="teachers">Teacher</label>
-							<div class="dropdown">
-								<button class="btn btn-secondary dropdown-toggle" type="button" id="instruments"
-									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Lesson Provider (Teacher)
-								</button>
-								<div class="dropdown-menu">
-									<!-- sample data before db connection -->
-									<a class="dropdown-item">Teacher 1</a>
-									<a class="dropdown-item">Teacher 2</a>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col">
-								<label for="start">Start Time</label>
-								<input type="datetime-local" name="start"></input>
-							</div>
-							<div class="col form-inline">
-								<label for="length">Duration </label>
+					<form action="/updateJSON" method="POST">						
+			  			<div class="form-group">
+			  				<label for="lessonNameInput">Lesson Name</label>
+			  				<input type="text" class="form-control" id="lessonNameInput">
+			  			</div>
+			  			<div class="form-group">
+			  				<label for="instruments">Instrument Type</label>
+			  				<div class="col-lg-3" th:object="${instruments}">
+ 									<select class="form-control" id="instruments" name="instruments">
+ 										<option value="">Select Instrument</option>
+ 										<option th:each="s: ${instruments}"
+ 												th:value="${s}"
+ 												th:text="${s}"></option>
+ 									</select>
+ 							  </div>					
+			  			</div>
+			  			<div class="form-group">
+			  				<label for="teachers">Teacher</label>
+			  				<div class="col-lg-3" th:object="${teachers}">
+			  					<select class="form-control" id="teachers" name="teachers">
+			  						<option value="">Select Teacher</option>
+			  						<option th:each="s: ${teachers}"
+			  								th:value="${s}"
+			  								th:text="${s}"></option>
+			  					</select>
+			  				</div>
+			  			</div>
+			  			<div class="row">
+			  				<div class="col">
+			  					<label for="start">Start Time</label>
+			  					<input type="datetime-local" name="start"></input>
+			  				</div>
+			  				<div class="col form-inline">
+								<label for="length">Duration    </label>
 								<input type="text" class="form-control" name="duration">
 							</div>
 						</div>
