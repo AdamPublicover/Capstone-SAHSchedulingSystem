@@ -41,10 +41,13 @@ public class CreateLessonController {
 	public String hello(Model model) {
 		List<String> myInstruments = getInstruments();
 		List<String> myTeachers = getTeachers();
+		model.addAttribute("instruments", myInstruments);
+		model.addAttribute("teachers", myTeachers);
 		
 		// Example of Implementation:
-		//myInstruments.forEach(e -> System.out.println(e));
-		//myTeachers.forEach(e -> System.out.println(e));
+		myInstruments.forEach(e -> System.out.println(e));
+		myTeachers.forEach(e -> System.out.println(e));
+
 		
 		return "create_lesson";
 	}
