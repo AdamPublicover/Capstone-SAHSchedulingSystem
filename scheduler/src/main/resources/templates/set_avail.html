@@ -1,516 +1,559 @@
 <!-- Esther: This page should technically only be viewable by teachers -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<title>Stay at Home Music Scheduler</title>
+  <title>Stay at Home Music Scheduler</title>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href="/styles/create_lesson.css">
+  <link rel="stylesheet" href="/styles/create_lesson.css">
 </head>
-<body>
-    <nav class = "navbar navbar-expand-lg navbar-light bg-light">
-	    <a class="navbar-brand" href="#">Stay at Home Music Scheduler</a>
-	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	      <span class="navbar-toggler-icon"></span>
-	    </button>
-	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    		<ul class="navbar-nav mr-auto">
-	      		<li class="nav-item">
-	        		<a class="nav-link" href="/calendar">Calendar</a>
-	      		</li>
-	      		<li class="nav-item">
-	        		<a class="nav-link" href="/create_lesson">Create a Lesson</a>
-	      		</li>
-	      		<li class="nav-item active">
-	        		<a class="nav-link" href="/set_avail">Set Availability<span class="sr-only">(current)</span></a>
-	      		</li>
-                <li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					  Time Off
-					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item active" href="/time_off_t">Teacher View - Make Requests</a>
-            <a class="dropdown-item" href="#">Owner View - View Requests</a>
-					</div>
-				</li>  
-                <li class="nav-item">
-	        		<a class="nav-link" href="/">Log out</a>
-	      		</li>
-	    	</ul>
-		    <form class="form-inline my-2 my-lg-0">
-      			<input class="form-control mr-sm-2" type="search" placeholder="Instrument, Lastname ..." aria-label="Search">
-      			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filter</button>
-    		</form>
-  		</div>
-    </nav>
-    
-    <table class="centre-login-form">		
-		<tr>	
-			<th>				
-				<div class="jumbotron jumbotron-fluid" id="title">
-				
-					<!-- Beth: right now this 'Back' button takes you to index.html, will take us back to the calendar in the future -->
-					<form action="/" method="get">
-						<button type="submit" class="btn btn-primary">Back</button>	
-					</form>	
-													
-					<h1 class="display-4">Set Availability</h1>
-					<p class="lead">Fill out the information below to set your schedule for the calendar. Ensure the information
-									is correct and click 'Submit' to confirm.</p>
-				</div>
-			</th>
-		</tr>
-		<tr>
-			<th>
-				<div id="lesson">
-                    <form action="/updateJSON" method="POST">	
-                        <div class="form-group">
-                            <label for="days">Sunday</label>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Start Time
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item">12:00am</a>
-                                    <a class="dropdown-item">1:00am</a>
-                                    <a class="dropdown-item">2:00am</a>
-                                    <a class="dropdown-item">3:00am</a>
-                                    <a class="dropdown-item">4:00am</a>
-                                    <a class="dropdown-item">5:00am</a>
-                                    <a class="dropdown-item">6:00am</a>
-                                    <a class="dropdown-item">7:00am</a>
-                                    <a class="dropdown-item">8:00am</a>
-                                    <a class="dropdown-item">9:00am</a>
-                                    <a class="dropdown-item">10:00am</a>
-                                    <a class="dropdown-item">11:00am</a>
-                                    <a class="dropdown-item">12:00pm</a>
-                                  <a class="dropdown-item">1:00pm</a>
-                                    <a class="dropdown-item">2:00pm</a>
-                                    <a class="dropdown-item">3:00pm</a>
-                                    <a class="dropdown-item">4:00pm</a>
-                                    <a class="dropdown-item">5:00pm</a>
-                                    <a class="dropdown-item">6:00pm</a>
-                                    <a class="dropdown-item">7:00pm</a>
-                                    <a class="dropdown-item">8:00pm</a>
-                                    <a class="dropdown-item">9:00pm</a>
-                                    <a class="dropdown-item">10:00pm</a>
-                                    <a class="dropdown-item">11:00pm</a>
-                              </div>
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    End Time
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item">12:00am</a>
-                                    <a class="dropdown-item">1:00am</a>
-                                    <a class="dropdown-item">2:00am</a>
-                                    <a class="dropdown-item">3:00am</a>
-                                    <a class="dropdown-item">4:00am</a>
-                                    <a class="dropdown-item">5:00am</a>
-                                    <a class="dropdown-item">6:00am</a>
-                                    <a class="dropdown-item">7:00am</a>
-                                    <a class="dropdown-item">8:00am</a>
-                                    <a class="dropdown-item">9:00am</a>
-                                    <a class="dropdown-item">10:00am</a>
-                                    <a class="dropdown-item">11:00am</a>
-                                    <a class="dropdown-item">12:00pm</a>
-                                  <a class="dropdown-item">1:00pm</a>
-                                    <a class="dropdown-item">2:00pm</a>
-                                    <a class="dropdown-item">3:00pm</a>
-                                    <a class="dropdown-item">4:00pm</a>
-                                    <a class="dropdown-item">5:00pm</a>
-                                    <a class="dropdown-item">6:00pm</a>
-                                    <a class="dropdown-item">7:00pm</a>
-                                    <a class="dropdown-item">8:00pm</a>
-                                    <a class="dropdown-item">9:00pm</a>
-                                    <a class="dropdown-item">10:00pm</a>
-                                    <a class="dropdown-item">11:00pm</a>
-                              </div>
-                            </div>	
-			  				<label for="days">Monday</label>
-			  				<div class="dropdown">
-			  					<button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			  						Start Time
-			  					</button>
-			  					<div class="dropdown-menu">
-			  						<a class="dropdown-item">12:00am</a>
-			  						<a class="dropdown-item">1:00am</a>
-			  						<a class="dropdown-item">2:00am</a>
-			  						<a class="dropdown-item">3:00am</a>
-			  						<a class="dropdown-item">4:00am</a>
-			  						<a class="dropdown-item">5:00am</a>
-			  						<a class="dropdown-item">6:00am</a>
-			  						<a class="dropdown-item">7:00am</a>
-			  						<a class="dropdown-item">8:00am</a>
-			  						<a class="dropdown-item">9:00am</a>
-			  						<a class="dropdown-item">10:00am</a>
-			  						<a class="dropdown-item">11:00am</a>
-			  						<a class="dropdown-item">12:00pm</a>
-                                    <a class="dropdown-item">1:00pm</a>
-			  						<a class="dropdown-item">2:00pm</a>
-			  						<a class="dropdown-item">3:00pm</a>
-			  						<a class="dropdown-item">4:00pm</a>
-			  						<a class="dropdown-item">5:00pm</a>
-			  						<a class="dropdown-item">6:00pm</a>
-			  						<a class="dropdown-item">7:00pm</a>
-			  						<a class="dropdown-item">8:00pm</a>
-			  						<a class="dropdown-item">9:00pm</a>
-			  						<a class="dropdown-item">10:00pm</a>
-			  						<a class="dropdown-item">11:00pm</a>
-                                </div>
-			  					<button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			  						End Time
-			  					</button>
-			  					<div class="dropdown-menu">
-			  						<a class="dropdown-item">12:00am</a>
-			  						<a class="dropdown-item">1:00am</a>
-			  						<a class="dropdown-item">2:00am</a>
-			  						<a class="dropdown-item">3:00am</a>
-			  						<a class="dropdown-item">4:00am</a>
-			  						<a class="dropdown-item">5:00am</a>
-			  						<a class="dropdown-item">6:00am</a>
-			  						<a class="dropdown-item">7:00am</a>
-			  						<a class="dropdown-item">8:00am</a>
-			  						<a class="dropdown-item">9:00am</a>
-			  						<a class="dropdown-item">10:00am</a>
-			  						<a class="dropdown-item">11:00am</a>
-			  						<a class="dropdown-item">12:00pm</a>
-                                    <a class="dropdown-item">1:00pm</a>
-			  						<a class="dropdown-item">2:00pm</a>
-			  						<a class="dropdown-item">3:00pm</a>
-			  						<a class="dropdown-item">4:00pm</a>
-			  						<a class="dropdown-item">5:00pm</a>
-			  						<a class="dropdown-item">6:00pm</a>
-			  						<a class="dropdown-item">7:00pm</a>
-			  						<a class="dropdown-item">8:00pm</a>
-			  						<a class="dropdown-item">9:00pm</a>
-			  						<a class="dropdown-item">10:00pm</a>
-			  						<a class="dropdown-item">11:00pm</a>
-                                </div>
-                              </div>	
-                            <label for="days">Tuesday</label>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Start Time
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item">12:00am</a>
-                                    <a class="dropdown-item">1:00am</a>
-                                    <a class="dropdown-item">2:00am</a>
-                                    <a class="dropdown-item">3:00am</a>
-                                    <a class="dropdown-item">4:00am</a>
-                                    <a class="dropdown-item">5:00am</a>
-                                    <a class="dropdown-item">6:00am</a>
-                                    <a class="dropdown-item">7:00am</a>
-                                    <a class="dropdown-item">8:00am</a>
-                                    <a class="dropdown-item">9:00am</a>
-                                    <a class="dropdown-item">10:00am</a>
-                                    <a class="dropdown-item">11:00am</a>
-                                    <a class="dropdown-item">12:00pm</a>
-                                  <a class="dropdown-item">1:00pm</a>
-                                    <a class="dropdown-item">2:00pm</a>
-                                    <a class="dropdown-item">3:00pm</a>
-                                    <a class="dropdown-item">4:00pm</a>
-                                    <a class="dropdown-item">5:00pm</a>
-                                    <a class="dropdown-item">6:00pm</a>
-                                    <a class="dropdown-item">7:00pm</a>
-                                    <a class="dropdown-item">8:00pm</a>
-                                    <a class="dropdown-item">9:00pm</a>
-                                    <a class="dropdown-item">10:00pm</a>
-                                    <a class="dropdown-item">11:00pm</a>
-                              </div>
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    End Time
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item">12:00am</a>
-                                    <a class="dropdown-item">1:00am</a>
-                                    <a class="dropdown-item">2:00am</a>
-                                    <a class="dropdown-item">3:00am</a>
-                                    <a class="dropdown-item">4:00am</a>
-                                    <a class="dropdown-item">5:00am</a>
-                                    <a class="dropdown-item">6:00am</a>
-                                    <a class="dropdown-item">7:00am</a>
-                                    <a class="dropdown-item">8:00am</a>
-                                    <a class="dropdown-item">9:00am</a>
-                                    <a class="dropdown-item">10:00am</a>
-                                    <a class="dropdown-item">11:00am</a>
-                                    <a class="dropdown-item">12:00pm</a>
-                                  <a class="dropdown-item">1:00pm</a>
-                                    <a class="dropdown-item">2:00pm</a>
-                                    <a class="dropdown-item">3:00pm</a>
-                                    <a class="dropdown-item">4:00pm</a>
-                                    <a class="dropdown-item">5:00pm</a>
-                                    <a class="dropdown-item">6:00pm</a>
-                                    <a class="dropdown-item">7:00pm</a>
-                                    <a class="dropdown-item">8:00pm</a>
-                                    <a class="dropdown-item">9:00pm</a>
-                                    <a class="dropdown-item">10:00pm</a>
-                                    <a class="dropdown-item">11:00pm</a>
-                              </div>
-                            </div>	
-                            <label for="days">Wednesday</label>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Start Time
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item">12:00am</a>
-                                    <a class="dropdown-item">1:00am</a>
-                                    <a class="dropdown-item">2:00am</a>
-                                    <a class="dropdown-item">3:00am</a>
-                                    <a class="dropdown-item">4:00am</a>
-                                    <a class="dropdown-item">5:00am</a>
-                                    <a class="dropdown-item">6:00am</a>
-                                    <a class="dropdown-item">7:00am</a>
-                                    <a class="dropdown-item">8:00am</a>
-                                    <a class="dropdown-item">9:00am</a>
-                                    <a class="dropdown-item">10:00am</a>
-                                    <a class="dropdown-item">11:00am</a>
-                                    <a class="dropdown-item">12:00pm</a>
-                                    <a class="dropdown-item">1:00pm</a>
-                                    <a class="dropdown-item">2:00pm</a>
-                                    <a class="dropdown-item">3:00pm</a>
-                                    <a class="dropdown-item">4:00pm</a>
-                                    <a class="dropdown-item">5:00pm</a>
-                                    <a class="dropdown-item">6:00pm</a>
-                                    <a class="dropdown-item">7:00pm</a>
-                                    <a class="dropdown-item">8:00pm</a>
-                                    <a class="dropdown-item">9:00pm</a>
-                                    <a class="dropdown-item">10:00pm</a>
-                                    <a class="dropdown-item">11:00pm</a>
-                              </div>
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    End Time
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item">12:00am</a>
-                                    <a class="dropdown-item">1:00am</a>
-                                    <a class="dropdown-item">2:00am</a>
-                                    <a class="dropdown-item">3:00am</a>
-                                    <a class="dropdown-item">4:00am</a>
-                                    <a class="dropdown-item">5:00am</a>
-                                    <a class="dropdown-item">6:00am</a>
-                                    <a class="dropdown-item">7:00am</a>
-                                    <a class="dropdown-item">8:00am</a>
-                                    <a class="dropdown-item">9:00am</a>
-                                    <a class="dropdown-item">10:00am</a>
-                                    <a class="dropdown-item">11:00am</a>
-                                    <a class="dropdown-item">12:00pm</a>
-                                    <a class="dropdown-item">1:00pm</a>
-                                    <a class="dropdown-item">2:00pm</a>
-                                    <a class="dropdown-item">3:00pm</a>
-                                    <a class="dropdown-item">4:00pm</a>
-                                    <a class="dropdown-item">5:00pm</a>
-                                    <a class="dropdown-item">6:00pm</a>
-                                    <a class="dropdown-item">7:00pm</a>
-                                    <a class="dropdown-item">8:00pm</a>
-                                    <a class="dropdown-item">9:00pm</a>
-                                    <a class="dropdown-item">10:00pm</a>
-                                    <a class="dropdown-item">11:00pm</a>
-                              </div>
-                            </div>
-                            <label for="days">Thursday</label>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Start Time
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item">12:00am</a>
-                                    <a class="dropdown-item">1:00am</a>
-                                    <a class="dropdown-item">2:00am</a>
-                                    <a class="dropdown-item">3:00am</a>
-                                    <a class="dropdown-item">4:00am</a>
-                                    <a class="dropdown-item">5:00am</a>
-                                    <a class="dropdown-item">6:00am</a>
-                                    <a class="dropdown-item">7:00am</a>
-                                    <a class="dropdown-item">8:00am</a>
-                                    <a class="dropdown-item">9:00am</a>
-                                    <a class="dropdown-item">10:00am</a>
-                                    <a class="dropdown-item">11:00am</a>
-                                    <a class="dropdown-item">12:00pm</a>
-                                    <a class="dropdown-item">1:00pm</a>
-                                    <a class="dropdown-item">2:00pm</a>
-                                    <a class="dropdown-item">3:00pm</a>
-                                    <a class="dropdown-item">4:00pm</a>
-                                    <a class="dropdown-item">5:00pm</a>
-                                    <a class="dropdown-item">6:00pm</a>
-                                    <a class="dropdown-item">7:00pm</a>
-                                    <a class="dropdown-item">8:00pm</a>
-                                    <a class="dropdown-item">9:00pm</a>
-                                    <a class="dropdown-item">10:00pm</a>
-                                    <a class="dropdown-item">11:00pm</a>
-                              </div>
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    End Time
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item">12:00am</a>
-                                    <a class="dropdown-item">1:00am</a>
-                                    <a class="dropdown-item">2:00am</a>
-                                    <a class="dropdown-item">3:00am</a>
-                                    <a class="dropdown-item">4:00am</a>
-                                    <a class="dropdown-item">5:00am</a>
-                                    <a class="dropdown-item">6:00am</a>
-                                    <a class="dropdown-item">7:00am</a>
-                                    <a class="dropdown-item">8:00am</a>
-                                    <a class="dropdown-item">9:00am</a>
-                                    <a class="dropdown-item">10:00am</a>
-                                    <a class="dropdown-item">11:00am</a>
-                                    <a class="dropdown-item">12:00pm</a>
-                                    <a class="dropdown-item">1:00pm</a>
-                                    <a class="dropdown-item">2:00pm</a>
-                                    <a class="dropdown-item">3:00pm</a>
-                                    <a class="dropdown-item">4:00pm</a>
-                                    <a class="dropdown-item">5:00pm</a>
-                                    <a class="dropdown-item">6:00pm</a>
-                                    <a class="dropdown-item">7:00pm</a>
-                                    <a class="dropdown-item">8:00pm</a>
-                                    <a class="dropdown-item">9:00pm</a>
-                                    <a class="dropdown-item">10:00pm</a>
-                                    <a class="dropdown-item">11:00pm</a>
-                              </div>
-                            </div>
-                            <label for="days">Friday</label>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Start Time
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item">12:00am</a>
-                                    <a class="dropdown-item">1:00am</a>
-                                    <a class="dropdown-item">2:00am</a>
-                                    <a class="dropdown-item">3:00am</a>
-                                    <a class="dropdown-item">4:00am</a>
-                                    <a class="dropdown-item">5:00am</a>
-                                    <a class="dropdown-item">6:00am</a>
-                                    <a class="dropdown-item">7:00am</a>
-                                    <a class="dropdown-item">8:00am</a>
-                                    <a class="dropdown-item">9:00am</a>
-                                    <a class="dropdown-item">10:00am</a>
-                                    <a class="dropdown-item">11:00am</a>
-                                    <a class="dropdown-item">12:00pm</a>
-                                    <a class="dropdown-item">1:00pm</a>
-                                    <a class="dropdown-item">2:00pm</a>
-                                    <a class="dropdown-item">3:00pm</a>
-                                    <a class="dropdown-item">4:00pm</a>
-                                    <a class="dropdown-item">5:00pm</a>
-                                    <a class="dropdown-item">6:00pm</a>
-                                    <a class="dropdown-item">7:00pm</a>
-                                    <a class="dropdown-item">8:00pm</a>
-                                    <a class="dropdown-item">9:00pm</a>
-                                    <a class="dropdown-item">10:00pm</a>
-                                    <a class="dropdown-item">11:00pm</a>
-                              </div>
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    End Time
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item">12:00am</a>
-                                    <a class="dropdown-item">1:00am</a>
-                                    <a class="dropdown-item">2:00am</a>
-                                    <a class="dropdown-item">3:00am</a>
-                                    <a class="dropdown-item">4:00am</a>
-                                    <a class="dropdown-item">5:00am</a>
-                                    <a class="dropdown-item">6:00am</a>
-                                    <a class="dropdown-item">7:00am</a>
-                                    <a class="dropdown-item">8:00am</a>
-                                    <a class="dropdown-item">9:00am</a>
-                                    <a class="dropdown-item">10:00am</a>
-                                    <a class="dropdown-item">11:00am</a>
-                                    <a class="dropdown-item">12:00pm</a>
-                                    <a class="dropdown-item">1:00pm</a>
-                                    <a class="dropdown-item">2:00pm</a>
-                                    <a class="dropdown-item">3:00pm</a>
-                                    <a class="dropdown-item">4:00pm</a>
-                                    <a class="dropdown-item">5:00pm</a>
-                                    <a class="dropdown-item">6:00pm</a>
-                                    <a class="dropdown-item">7:00pm</a>
-                                    <a class="dropdown-item">8:00pm</a>
-                                    <a class="dropdown-item">9:00pm</a>
-                                    <a class="dropdown-item">10:00pm</a>
-                                    <a class="dropdown-item">11:00pm</a>
-                              </div>
-                            </div>	
-                            <label for="days">Saturday</label>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Start Time
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item">12:00am</a>
-                                    <a class="dropdown-item">1:00am</a>
-                                    <a class="dropdown-item">2:00am</a>
-                                    <a class="dropdown-item">3:00am</a>
-                                    <a class="dropdown-item">4:00am</a>
-                                    <a class="dropdown-item">5:00am</a>
-                                    <a class="dropdown-item">6:00am</a>
-                                    <a class="dropdown-item">7:00am</a>
-                                    <a class="dropdown-item">8:00am</a>
-                                    <a class="dropdown-item">9:00am</a>
-                                    <a class="dropdown-item">10:00am</a>
-                                    <a class="dropdown-item">11:00am</a>
-                                    <a class="dropdown-item">12:00pm</a>
-                                    <a class="dropdown-item">1:00pm</a>
-                                    <a class="dropdown-item">2:00pm</a>
-                                    <a class="dropdown-item">3:00pm</a>
-                                    <a class="dropdown-item">4:00pm</a>
-                                    <a class="dropdown-item">5:00pm</a>
-                                    <a class="dropdown-item">6:00pm</a>
-                                    <a class="dropdown-item">7:00pm</a>
-                                    <a class="dropdown-item">8:00pm</a>
-                                    <a class="dropdown-item">9:00pm</a>
-                                    <a class="dropdown-item">10:00pm</a>
-                                    <a class="dropdown-item">11:00pm</a>
-                              </div>
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    End Time
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item">12:00am</a>
-                                    <a class="dropdown-item">1:00am</a>
-                                    <a class="dropdown-item">2:00am</a>
-                                    <a class="dropdown-item">3:00am</a>
-                                    <a class="dropdown-item">4:00am</a>
-                                    <a class="dropdown-item">5:00am</a>
-                                    <a class="dropdown-item">6:00am</a>
-                                    <a class="dropdown-item">7:00am</a>
-                                    <a class="dropdown-item">8:00am</a>
-                                    <a class="dropdown-item">9:00am</a>
-                                    <a class="dropdown-item">10:00am</a>
-                                    <a class="dropdown-item">11:00am</a>
-                                    <a class="dropdown-item">12:00pm</a>
-                                    <a class="dropdown-item">1:00pm</a>
-                                    <a class="dropdown-item">2:00pm</a>
-                                    <a class="dropdown-item">3:00pm</a>
-                                    <a class="dropdown-item">4:00pm</a>
-                                    <a class="dropdown-item">5:00pm</a>
-                                    <a class="dropdown-item">6:00pm</a>
-                                    <a class="dropdown-item">7:00pm</a>
-                                    <a class="dropdown-item">8:00pm</a>
-                                    <a class="dropdown-item">9:00pm</a>
-                                    <a class="dropdown-item">10:00pm</a>
-                                    <a class="dropdown-item">11:00pm</a>
-                              </div>
-                            </div>	
-                            		
-                        </div>
-                        
 
-			  			<div class="form-group">
-			  				<label for="comments">Schedule Comments (scheduling conflicts, etc)</label>
-			  				<textarea class="form-control rounded-2" id="commentsInput" rows="5"></textarea>
-			  			</div>
-			  			
-			  			<!-- Beth: right now this button doesn't submit, will once db and calendar implemented -->
-			  			<button type="submit" class="btn btn-primary">Submit</button>
-					</form>
-				</div>
-			</th>
-		</tr>
-	</table>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/calendar">Stay at Home Music Scheduler</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Teacher
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/calendar">Calendar</a>
+            <a class="dropdown-item" href="/edit_profile">Edit Profile</a>
+            <a class="dropdown-item" href="/create_lesson">Create Lesson</a>
+            <a class="dropdown-item active">Set Availability</a>
+            <a class="dropdown-item" href="/select_instruments_t">Set Instruments</a>
+            <a class="dropdown-item" href="/time_off_t">Time Off Requests</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Owner
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/calendar">Calendar</a>
+            <a class="dropdown-item" href="/create_profile_a">Create Profile</a>
+            <a class="dropdown-item" href="/create_lesson">Create Lesson</a>
+            <a class="dropdown-item" href="#">View All Requests</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Parent
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/calendar">Calendar</a>
+            <a class="dropdown-item" href="/edit_profile">Edit Profile</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">Log out</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Instrument, Lastname ..." aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filter</button>
+      </form>
+    </div>
+  </nav>
+
+  <table class="centre-login-form">
+    <tr>
+      <th>
+        <div class="jumbotron jumbotron-fluid" id="title">
+
+          <!-- Beth: right now this 'Back' button takes you to index.html, will take us back to the calendar in the future -->
+          <form action="/" method="get">
+            <button type="submit" class="btn btn-primary">Back</button>
+          </form>
+
+          <h1 class="display-4">Set Availability</h1>
+          <p class="lead">Fill out the information below to set your schedule for the calendar. Ensure the information
+            is correct and click 'Submit' to confirm.</p>
+        </div>
+      </th>
+    </tr>
+    <tr>
+      <th>
+        <div id="lesson">
+          <form action="/updateJSON" method="POST">
+            <div class="form-group">
+              <label for="days">Sunday</label>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  Start Time
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item">12:00am</a>
+                  <a class="dropdown-item">1:00am</a>
+                  <a class="dropdown-item">2:00am</a>
+                  <a class="dropdown-item">3:00am</a>
+                  <a class="dropdown-item">4:00am</a>
+                  <a class="dropdown-item">5:00am</a>
+                  <a class="dropdown-item">6:00am</a>
+                  <a class="dropdown-item">7:00am</a>
+                  <a class="dropdown-item">8:00am</a>
+                  <a class="dropdown-item">9:00am</a>
+                  <a class="dropdown-item">10:00am</a>
+                  <a class="dropdown-item">11:00am</a>
+                  <a class="dropdown-item">12:00pm</a>
+                  <a class="dropdown-item">1:00pm</a>
+                  <a class="dropdown-item">2:00pm</a>
+                  <a class="dropdown-item">3:00pm</a>
+                  <a class="dropdown-item">4:00pm</a>
+                  <a class="dropdown-item">5:00pm</a>
+                  <a class="dropdown-item">6:00pm</a>
+                  <a class="dropdown-item">7:00pm</a>
+                  <a class="dropdown-item">8:00pm</a>
+                  <a class="dropdown-item">9:00pm</a>
+                  <a class="dropdown-item">10:00pm</a>
+                  <a class="dropdown-item">11:00pm</a>
+                </div>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  End Time
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item">12:00am</a>
+                  <a class="dropdown-item">1:00am</a>
+                  <a class="dropdown-item">2:00am</a>
+                  <a class="dropdown-item">3:00am</a>
+                  <a class="dropdown-item">4:00am</a>
+                  <a class="dropdown-item">5:00am</a>
+                  <a class="dropdown-item">6:00am</a>
+                  <a class="dropdown-item">7:00am</a>
+                  <a class="dropdown-item">8:00am</a>
+                  <a class="dropdown-item">9:00am</a>
+                  <a class="dropdown-item">10:00am</a>
+                  <a class="dropdown-item">11:00am</a>
+                  <a class="dropdown-item">12:00pm</a>
+                  <a class="dropdown-item">1:00pm</a>
+                  <a class="dropdown-item">2:00pm</a>
+                  <a class="dropdown-item">3:00pm</a>
+                  <a class="dropdown-item">4:00pm</a>
+                  <a class="dropdown-item">5:00pm</a>
+                  <a class="dropdown-item">6:00pm</a>
+                  <a class="dropdown-item">7:00pm</a>
+                  <a class="dropdown-item">8:00pm</a>
+                  <a class="dropdown-item">9:00pm</a>
+                  <a class="dropdown-item">10:00pm</a>
+                  <a class="dropdown-item">11:00pm</a>
+                </div>
+              </div>
+              <label for="days">Monday</label>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  Start Time
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item">12:00am</a>
+                  <a class="dropdown-item">1:00am</a>
+                  <a class="dropdown-item">2:00am</a>
+                  <a class="dropdown-item">3:00am</a>
+                  <a class="dropdown-item">4:00am</a>
+                  <a class="dropdown-item">5:00am</a>
+                  <a class="dropdown-item">6:00am</a>
+                  <a class="dropdown-item">7:00am</a>
+                  <a class="dropdown-item">8:00am</a>
+                  <a class="dropdown-item">9:00am</a>
+                  <a class="dropdown-item">10:00am</a>
+                  <a class="dropdown-item">11:00am</a>
+                  <a class="dropdown-item">12:00pm</a>
+                  <a class="dropdown-item">1:00pm</a>
+                  <a class="dropdown-item">2:00pm</a>
+                  <a class="dropdown-item">3:00pm</a>
+                  <a class="dropdown-item">4:00pm</a>
+                  <a class="dropdown-item">5:00pm</a>
+                  <a class="dropdown-item">6:00pm</a>
+                  <a class="dropdown-item">7:00pm</a>
+                  <a class="dropdown-item">8:00pm</a>
+                  <a class="dropdown-item">9:00pm</a>
+                  <a class="dropdown-item">10:00pm</a>
+                  <a class="dropdown-item">11:00pm</a>
+                </div>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  End Time
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item">12:00am</a>
+                  <a class="dropdown-item">1:00am</a>
+                  <a class="dropdown-item">2:00am</a>
+                  <a class="dropdown-item">3:00am</a>
+                  <a class="dropdown-item">4:00am</a>
+                  <a class="dropdown-item">5:00am</a>
+                  <a class="dropdown-item">6:00am</a>
+                  <a class="dropdown-item">7:00am</a>
+                  <a class="dropdown-item">8:00am</a>
+                  <a class="dropdown-item">9:00am</a>
+                  <a class="dropdown-item">10:00am</a>
+                  <a class="dropdown-item">11:00am</a>
+                  <a class="dropdown-item">12:00pm</a>
+                  <a class="dropdown-item">1:00pm</a>
+                  <a class="dropdown-item">2:00pm</a>
+                  <a class="dropdown-item">3:00pm</a>
+                  <a class="dropdown-item">4:00pm</a>
+                  <a class="dropdown-item">5:00pm</a>
+                  <a class="dropdown-item">6:00pm</a>
+                  <a class="dropdown-item">7:00pm</a>
+                  <a class="dropdown-item">8:00pm</a>
+                  <a class="dropdown-item">9:00pm</a>
+                  <a class="dropdown-item">10:00pm</a>
+                  <a class="dropdown-item">11:00pm</a>
+                </div>
+              </div>
+              <label for="days">Tuesday</label>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  Start Time
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item">12:00am</a>
+                  <a class="dropdown-item">1:00am</a>
+                  <a class="dropdown-item">2:00am</a>
+                  <a class="dropdown-item">3:00am</a>
+                  <a class="dropdown-item">4:00am</a>
+                  <a class="dropdown-item">5:00am</a>
+                  <a class="dropdown-item">6:00am</a>
+                  <a class="dropdown-item">7:00am</a>
+                  <a class="dropdown-item">8:00am</a>
+                  <a class="dropdown-item">9:00am</a>
+                  <a class="dropdown-item">10:00am</a>
+                  <a class="dropdown-item">11:00am</a>
+                  <a class="dropdown-item">12:00pm</a>
+                  <a class="dropdown-item">1:00pm</a>
+                  <a class="dropdown-item">2:00pm</a>
+                  <a class="dropdown-item">3:00pm</a>
+                  <a class="dropdown-item">4:00pm</a>
+                  <a class="dropdown-item">5:00pm</a>
+                  <a class="dropdown-item">6:00pm</a>
+                  <a class="dropdown-item">7:00pm</a>
+                  <a class="dropdown-item">8:00pm</a>
+                  <a class="dropdown-item">9:00pm</a>
+                  <a class="dropdown-item">10:00pm</a>
+                  <a class="dropdown-item">11:00pm</a>
+                </div>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  End Time
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item">12:00am</a>
+                  <a class="dropdown-item">1:00am</a>
+                  <a class="dropdown-item">2:00am</a>
+                  <a class="dropdown-item">3:00am</a>
+                  <a class="dropdown-item">4:00am</a>
+                  <a class="dropdown-item">5:00am</a>
+                  <a class="dropdown-item">6:00am</a>
+                  <a class="dropdown-item">7:00am</a>
+                  <a class="dropdown-item">8:00am</a>
+                  <a class="dropdown-item">9:00am</a>
+                  <a class="dropdown-item">10:00am</a>
+                  <a class="dropdown-item">11:00am</a>
+                  <a class="dropdown-item">12:00pm</a>
+                  <a class="dropdown-item">1:00pm</a>
+                  <a class="dropdown-item">2:00pm</a>
+                  <a class="dropdown-item">3:00pm</a>
+                  <a class="dropdown-item">4:00pm</a>
+                  <a class="dropdown-item">5:00pm</a>
+                  <a class="dropdown-item">6:00pm</a>
+                  <a class="dropdown-item">7:00pm</a>
+                  <a class="dropdown-item">8:00pm</a>
+                  <a class="dropdown-item">9:00pm</a>
+                  <a class="dropdown-item">10:00pm</a>
+                  <a class="dropdown-item">11:00pm</a>
+                </div>
+              </div>
+              <label for="days">Wednesday</label>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  Start Time
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item">12:00am</a>
+                  <a class="dropdown-item">1:00am</a>
+                  <a class="dropdown-item">2:00am</a>
+                  <a class="dropdown-item">3:00am</a>
+                  <a class="dropdown-item">4:00am</a>
+                  <a class="dropdown-item">5:00am</a>
+                  <a class="dropdown-item">6:00am</a>
+                  <a class="dropdown-item">7:00am</a>
+                  <a class="dropdown-item">8:00am</a>
+                  <a class="dropdown-item">9:00am</a>
+                  <a class="dropdown-item">10:00am</a>
+                  <a class="dropdown-item">11:00am</a>
+                  <a class="dropdown-item">12:00pm</a>
+                  <a class="dropdown-item">1:00pm</a>
+                  <a class="dropdown-item">2:00pm</a>
+                  <a class="dropdown-item">3:00pm</a>
+                  <a class="dropdown-item">4:00pm</a>
+                  <a class="dropdown-item">5:00pm</a>
+                  <a class="dropdown-item">6:00pm</a>
+                  <a class="dropdown-item">7:00pm</a>
+                  <a class="dropdown-item">8:00pm</a>
+                  <a class="dropdown-item">9:00pm</a>
+                  <a class="dropdown-item">10:00pm</a>
+                  <a class="dropdown-item">11:00pm</a>
+                </div>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  End Time
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item">12:00am</a>
+                  <a class="dropdown-item">1:00am</a>
+                  <a class="dropdown-item">2:00am</a>
+                  <a class="dropdown-item">3:00am</a>
+                  <a class="dropdown-item">4:00am</a>
+                  <a class="dropdown-item">5:00am</a>
+                  <a class="dropdown-item">6:00am</a>
+                  <a class="dropdown-item">7:00am</a>
+                  <a class="dropdown-item">8:00am</a>
+                  <a class="dropdown-item">9:00am</a>
+                  <a class="dropdown-item">10:00am</a>
+                  <a class="dropdown-item">11:00am</a>
+                  <a class="dropdown-item">12:00pm</a>
+                  <a class="dropdown-item">1:00pm</a>
+                  <a class="dropdown-item">2:00pm</a>
+                  <a class="dropdown-item">3:00pm</a>
+                  <a class="dropdown-item">4:00pm</a>
+                  <a class="dropdown-item">5:00pm</a>
+                  <a class="dropdown-item">6:00pm</a>
+                  <a class="dropdown-item">7:00pm</a>
+                  <a class="dropdown-item">8:00pm</a>
+                  <a class="dropdown-item">9:00pm</a>
+                  <a class="dropdown-item">10:00pm</a>
+                  <a class="dropdown-item">11:00pm</a>
+                </div>
+              </div>
+              <label for="days">Thursday</label>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  Start Time
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item">12:00am</a>
+                  <a class="dropdown-item">1:00am</a>
+                  <a class="dropdown-item">2:00am</a>
+                  <a class="dropdown-item">3:00am</a>
+                  <a class="dropdown-item">4:00am</a>
+                  <a class="dropdown-item">5:00am</a>
+                  <a class="dropdown-item">6:00am</a>
+                  <a class="dropdown-item">7:00am</a>
+                  <a class="dropdown-item">8:00am</a>
+                  <a class="dropdown-item">9:00am</a>
+                  <a class="dropdown-item">10:00am</a>
+                  <a class="dropdown-item">11:00am</a>
+                  <a class="dropdown-item">12:00pm</a>
+                  <a class="dropdown-item">1:00pm</a>
+                  <a class="dropdown-item">2:00pm</a>
+                  <a class="dropdown-item">3:00pm</a>
+                  <a class="dropdown-item">4:00pm</a>
+                  <a class="dropdown-item">5:00pm</a>
+                  <a class="dropdown-item">6:00pm</a>
+                  <a class="dropdown-item">7:00pm</a>
+                  <a class="dropdown-item">8:00pm</a>
+                  <a class="dropdown-item">9:00pm</a>
+                  <a class="dropdown-item">10:00pm</a>
+                  <a class="dropdown-item">11:00pm</a>
+                </div>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  End Time
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item">12:00am</a>
+                  <a class="dropdown-item">1:00am</a>
+                  <a class="dropdown-item">2:00am</a>
+                  <a class="dropdown-item">3:00am</a>
+                  <a class="dropdown-item">4:00am</a>
+                  <a class="dropdown-item">5:00am</a>
+                  <a class="dropdown-item">6:00am</a>
+                  <a class="dropdown-item">7:00am</a>
+                  <a class="dropdown-item">8:00am</a>
+                  <a class="dropdown-item">9:00am</a>
+                  <a class="dropdown-item">10:00am</a>
+                  <a class="dropdown-item">11:00am</a>
+                  <a class="dropdown-item">12:00pm</a>
+                  <a class="dropdown-item">1:00pm</a>
+                  <a class="dropdown-item">2:00pm</a>
+                  <a class="dropdown-item">3:00pm</a>
+                  <a class="dropdown-item">4:00pm</a>
+                  <a class="dropdown-item">5:00pm</a>
+                  <a class="dropdown-item">6:00pm</a>
+                  <a class="dropdown-item">7:00pm</a>
+                  <a class="dropdown-item">8:00pm</a>
+                  <a class="dropdown-item">9:00pm</a>
+                  <a class="dropdown-item">10:00pm</a>
+                  <a class="dropdown-item">11:00pm</a>
+                </div>
+              </div>
+              <label for="days">Friday</label>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  Start Time
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item">12:00am</a>
+                  <a class="dropdown-item">1:00am</a>
+                  <a class="dropdown-item">2:00am</a>
+                  <a class="dropdown-item">3:00am</a>
+                  <a class="dropdown-item">4:00am</a>
+                  <a class="dropdown-item">5:00am</a>
+                  <a class="dropdown-item">6:00am</a>
+                  <a class="dropdown-item">7:00am</a>
+                  <a class="dropdown-item">8:00am</a>
+                  <a class="dropdown-item">9:00am</a>
+                  <a class="dropdown-item">10:00am</a>
+                  <a class="dropdown-item">11:00am</a>
+                  <a class="dropdown-item">12:00pm</a>
+                  <a class="dropdown-item">1:00pm</a>
+                  <a class="dropdown-item">2:00pm</a>
+                  <a class="dropdown-item">3:00pm</a>
+                  <a class="dropdown-item">4:00pm</a>
+                  <a class="dropdown-item">5:00pm</a>
+                  <a class="dropdown-item">6:00pm</a>
+                  <a class="dropdown-item">7:00pm</a>
+                  <a class="dropdown-item">8:00pm</a>
+                  <a class="dropdown-item">9:00pm</a>
+                  <a class="dropdown-item">10:00pm</a>
+                  <a class="dropdown-item">11:00pm</a>
+                </div>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  End Time
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item">12:00am</a>
+                  <a class="dropdown-item">1:00am</a>
+                  <a class="dropdown-item">2:00am</a>
+                  <a class="dropdown-item">3:00am</a>
+                  <a class="dropdown-item">4:00am</a>
+                  <a class="dropdown-item">5:00am</a>
+                  <a class="dropdown-item">6:00am</a>
+                  <a class="dropdown-item">7:00am</a>
+                  <a class="dropdown-item">8:00am</a>
+                  <a class="dropdown-item">9:00am</a>
+                  <a class="dropdown-item">10:00am</a>
+                  <a class="dropdown-item">11:00am</a>
+                  <a class="dropdown-item">12:00pm</a>
+                  <a class="dropdown-item">1:00pm</a>
+                  <a class="dropdown-item">2:00pm</a>
+                  <a class="dropdown-item">3:00pm</a>
+                  <a class="dropdown-item">4:00pm</a>
+                  <a class="dropdown-item">5:00pm</a>
+                  <a class="dropdown-item">6:00pm</a>
+                  <a class="dropdown-item">7:00pm</a>
+                  <a class="dropdown-item">8:00pm</a>
+                  <a class="dropdown-item">9:00pm</a>
+                  <a class="dropdown-item">10:00pm</a>
+                  <a class="dropdown-item">11:00pm</a>
+                </div>
+              </div>
+              <label for="days">Saturday</label>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  Start Time
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item">12:00am</a>
+                  <a class="dropdown-item">1:00am</a>
+                  <a class="dropdown-item">2:00am</a>
+                  <a class="dropdown-item">3:00am</a>
+                  <a class="dropdown-item">4:00am</a>
+                  <a class="dropdown-item">5:00am</a>
+                  <a class="dropdown-item">6:00am</a>
+                  <a class="dropdown-item">7:00am</a>
+                  <a class="dropdown-item">8:00am</a>
+                  <a class="dropdown-item">9:00am</a>
+                  <a class="dropdown-item">10:00am</a>
+                  <a class="dropdown-item">11:00am</a>
+                  <a class="dropdown-item">12:00pm</a>
+                  <a class="dropdown-item">1:00pm</a>
+                  <a class="dropdown-item">2:00pm</a>
+                  <a class="dropdown-item">3:00pm</a>
+                  <a class="dropdown-item">4:00pm</a>
+                  <a class="dropdown-item">5:00pm</a>
+                  <a class="dropdown-item">6:00pm</a>
+                  <a class="dropdown-item">7:00pm</a>
+                  <a class="dropdown-item">8:00pm</a>
+                  <a class="dropdown-item">9:00pm</a>
+                  <a class="dropdown-item">10:00pm</a>
+                  <a class="dropdown-item">11:00pm</a>
+                </div>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="day" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  End Time
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item">12:00am</a>
+                  <a class="dropdown-item">1:00am</a>
+                  <a class="dropdown-item">2:00am</a>
+                  <a class="dropdown-item">3:00am</a>
+                  <a class="dropdown-item">4:00am</a>
+                  <a class="dropdown-item">5:00am</a>
+                  <a class="dropdown-item">6:00am</a>
+                  <a class="dropdown-item">7:00am</a>
+                  <a class="dropdown-item">8:00am</a>
+                  <a class="dropdown-item">9:00am</a>
+                  <a class="dropdown-item">10:00am</a>
+                  <a class="dropdown-item">11:00am</a>
+                  <a class="dropdown-item">12:00pm</a>
+                  <a class="dropdown-item">1:00pm</a>
+                  <a class="dropdown-item">2:00pm</a>
+                  <a class="dropdown-item">3:00pm</a>
+                  <a class="dropdown-item">4:00pm</a>
+                  <a class="dropdown-item">5:00pm</a>
+                  <a class="dropdown-item">6:00pm</a>
+                  <a class="dropdown-item">7:00pm</a>
+                  <a class="dropdown-item">8:00pm</a>
+                  <a class="dropdown-item">9:00pm</a>
+                  <a class="dropdown-item">10:00pm</a>
+                  <a class="dropdown-item">11:00pm</a>
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="form-group">
+              <label for="comments">Schedule Comments (scheduling conflicts, etc)</label>
+              <textarea class="form-control rounded-2" id="commentsInput" rows="5"></textarea>
+            </div>
+
+            <!-- Beth: right now this button doesn't submit, will once db and calendar implemented -->
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </th>
+    </tr>
+  </table>
 </body>
+
 </html>
