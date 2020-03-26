@@ -55,7 +55,7 @@
 				<div class="jumbotron jumbotron-fluid" id="title">
 				
 					<!-- Beth: right now this 'Back' button takes you to index.html, will take us back to the calendar in the future -->
-					<form action="/" method="get">
+					<form action="/calendar" method="get">
 						<button type="submit" class="btn btn-primary">Back</button>	
 					</form>	
 													
@@ -68,21 +68,26 @@
 		<tr>
 			<th>
 				<div id="lesson">
-					<form action="/updateJSON" method="POST">						
+					<form action="/create_profile_a/create" method="POST">						
 			  			<div class="form-group">
 			  				<label for="userEmailInput">User Email</label>
-			  				<input type="email" class="form-control" id="userEmailInput">
+			  				<input type="email" class="form-control" id="userEmailInput" name="email">
 			  			</div>
 			  			<div class="form-group">
-			  				<label for="accounts">Account Type</label>
+			  				<label for="userFirstName">User First Name</label>
+			  				<input type="text" class="form-control" id="userFirstName" name="firstName">
+			  			</div>
+			  			<div class="form-group">
+			  				<label for="userLastName">User Last Name</label>
+			  				<input type="text" class="form-control" id="userLastName" name="lastName">
+			  			</div>
+			  			<div class="form-group">
+			  				<label for="account">Account Type</label>
 			  				<div class="dropdown">
-			  					<button class="btn btn-secondary dropdown-toggle" type="button" id="accounts" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			  						Account
-			  					</button>
-			  					<div class="dropdown-menu">
-			  						<a class="dropdown-item">Teacher</a>
-			  						<a class="dropdown-item">Parent</a>
-			  					</div>
+			  					<select id="account_type" name="account">
+			  						<option value="2">Teacher</option>
+			  						<option value="3">Parent</option>
+			  					</select>
 			  				</div>
 			  			</div>
 			  			<!-- Beth: right now this button doesn't submit, will once db and calendar implemented -->

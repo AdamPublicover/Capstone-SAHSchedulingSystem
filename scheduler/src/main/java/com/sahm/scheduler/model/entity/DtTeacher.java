@@ -8,10 +8,14 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "DtTeacher", schema="sahs_scheduler")
+//@NamedQuery(name = "DtTeacher.findTeacherByInstrument",
+//      query = "SELECT * FROM DtTeacher WHERE DsEmail IN "
+//    		+ "( SELECT t.DsEmail FROM tTeacherPlaysInstrument t WHERE DiInstrumentId == ?1 ) ")
 @Access(AccessType.FIELD)
 public class DtTeacher {
 	
