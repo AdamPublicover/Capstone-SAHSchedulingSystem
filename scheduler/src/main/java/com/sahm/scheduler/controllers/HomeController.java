@@ -41,7 +41,7 @@ public class HomeController {
 				
 				model.addAttribute("AccountType", dtPassword.getDiAccountType());
 				model.addAttribute("userEmail", email);
-				return "calendar";
+				return "forward:/calendar";
 			}			
 			
 		} catch (Exception e) {

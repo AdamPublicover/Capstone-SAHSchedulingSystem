@@ -19,26 +19,28 @@ public class DtLesson {
 	
 	@Id
 	@Column(name="DiLessonId", nullable=false, unique=true)
-	private int DiLessonId;
+	private int lessonid;
 	
 	@Column(name="DsTeacherEmail", nullable=false)
-	String DsTeacherEmail;
+	String dsteacheremail;
 	
 	@Column(name="DsParentEmail", nullable=false)
-	String DsParentEmail;
+	String dsparentemail;
 	
 	@Column(name="DiInstrumentId", nullable=false)
 	int DiInstrumentId;
 	
 	public DtLesson() {}
 	
-	public void setDsTeacherEmail( String DsTeacherEmail) { this.DsTeacherEmail = DsTeacherEmail; }
-	public void setDsParentEmail( String DsParentEmail) { this.DsParentEmail = DsParentEmail; }
+	public void setDsTeacherEmail( String DsTeacherEmail) { this.dsteacheremail = DsTeacherEmail; }
+	public void setDsParentEmail( String DsParentEmail) { this.dsparentemail = DsParentEmail; }
 	public void setDiInstrumentId( int DiInstrumentId) { this.DiInstrumentId = DiInstrumentId; }
 	
-	public int getId() { return this.DiLessonId; }
-	public String getDsTeacherEmail() {return this.DsTeacherEmail;}
-	public String getDsParentEmail() { return this.DsParentEmail; }
+	public int getId() { return this.lessonid; }
+	public String getDsTeacherEmail() {return this.dsteacheremail;}
+	public String getDsParentEmail() { return this.dsparentemail; }
 	public int getDiInstrumentId() { return this.DiInstrumentId; }
+	
+	public String ToString() { return "Parent: " + this.dsparentemail + "\nTeacher: " + this.dsteacheremail + "\nInstrumentId: " + this.DiInstrumentId; }
 	
 }

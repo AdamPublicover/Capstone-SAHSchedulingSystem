@@ -29,7 +29,42 @@
 	<link rel="stylesheet" href="/styles/calendarcontainer.css">
 
 	<script>
+	/*
+	$.ajax({
+	    url: '/',
+	    headers:{
+	    'Accept' : 'application/json',
+	    'Content-Type': 'application/json'
+	    },
+	    success: function(result){
+	        if(result!== null){
+	            var len = result.length;
+	            if(len > 0){
+	                var jsonString = JSON.stringify(result);
+	                console.log(jsonString);
+	                for(var i=0; i<len; i++){
+	                    console.log(result[i]);
+	                    var title=result[i].title;
+	                    var start=result[i].start;
+	                    var startDate = new Date(start);
+	                    console.log("startDate :"+startDate);
+	                    var end=result[i].end;
+	                    var endDate = new Date(end);
+	                    console.log("endDate :"+endDate);
+	                    var event={ title:classname, start:startDate, end:endDate};
+	                    $('#calendar').fullCalendar( 'renderEvent', event, true);
 
+	                }
+	            } 
+	        }else{
+	            console.log("NO events");
+	        }
+	    },error: function (result) {
+	            console.log("AJAX error");
+	    }
+	});
+	*/
+		
 		document.addEventListener('DOMContentLoaded', function () {
 			var calendarEl = document.getElementById('calendar');
 

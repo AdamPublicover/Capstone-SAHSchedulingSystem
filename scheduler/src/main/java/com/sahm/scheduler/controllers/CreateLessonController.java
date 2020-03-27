@@ -98,16 +98,29 @@ public class CreateLessonController {
 		
 		dtLessonRepository.save(dtLesson);
 		
-		//System.out.println(dtLesson.getId());
-		/*
+		startTime = convertToSQLTimestamp(startTime);
+		
+		
+		// This gets the lesson value that we just inserted - necessary to pull its ID
+		DtLesson tempLesson = dtLessonRepository.findTopByOrderByLessonidDesc();
+		
 		DtLessonTime dtLessonTime = new DtLessonTime();
-		dtLessonTime.setDiLessonId(dtLesson.getId());
+		dtLessonTime.setDiLessonId(tempLesson.getId());
 		dtLessonTime.setDiLength(Integer.parseInt(length));
 		dtLessonTime.setDdLessonDate(startTime);
+		dtLessonTime.setDsParentEmail(tempLesson.getDsParentEmail());
+		dtLessonTime.setDsTeacherEmail(tempLesson.getDsTeacherEmail());
+		dtLessonTime.setDiInstrumentId(tempLesson.getDiInstrumentId());
 		
 		dtLessonTimeRepository.save(dtLessonTime);
-		*/
+		
 		return "calendar";
+	}
+	
+	public String convertToSQLTimestamp(String startTime) {
+		startTime = startTime.replace("T", " ");
+		startTime = startTime + ":00";
+		return startTime;
 	}
 	
 	// All of the below methods will be replaced.
