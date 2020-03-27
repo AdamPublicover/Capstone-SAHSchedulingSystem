@@ -97,11 +97,7 @@
 		<tr>
 			<th>
 				<div id="lesson">
-					<form action="/updateJSON" method="POST">						
-			  			<div class="form-group">
-			  				<label for="lessonNameInput">Lesson Name</label>
-			  				<input type="text" class="form-control" id="lessonNameInput">
-			  			</div>
+					<form action="/create_lesson/submit" method="POST">						
 			  			<div class="form-group">
 			  				<label for="instruments">Instrument Type</label>
 			  				<div class="col-lg-3" th:object="${instruments}">

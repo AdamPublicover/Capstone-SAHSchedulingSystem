@@ -7,5 +7,4 @@ public interface DtTeacherRepository extends CrudRepository<DtTeacher, Integer>{
 	
 	DtTeacher findByDsEmail(String DsEmail);
 	
-	
 }

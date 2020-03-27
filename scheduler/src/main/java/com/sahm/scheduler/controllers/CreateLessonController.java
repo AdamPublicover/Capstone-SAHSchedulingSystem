@@ -22,10 +22,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sahm.scheduler.model.entity.DtInstrument;
+import com.sahm.scheduler.model.entity.DtLesson;
+import com.sahm.scheduler.model.entity.DtLessonTime;
+import com.sahm.scheduler.model.entity.DtTeacher;
 import com.sahm.scheduler.model.repository.DtInstrumentRepository;
+import com.sahm.scheduler.model.repository.DtLessonRepository;
+import com.sahm.scheduler.model.repository.DtLessonTimeRepository;
 import com.sahm.scheduler.model.repository.DtTeacherRepository;
 
 @Controller
@@ -37,6 +43,12 @@ public class CreateLessonController {
 	@Autowired
 	DtTeacherRepository dtteacherRepository;
 	
+	@Autowired
+	DtLessonRepository dtLessonRepository;
+	
+	@Autowired
+	DtLessonTimeRepository dtLessonTimeRepository;	
+	
 	@RequestMapping(value="/create_lesson")
 	public String hello(Model model) {
 		List<String> myInstruments = getInstruments();
@@ -45,8 +57,8 @@ public class CreateLessonController {
 		model.addAttribute("teachers", myTeachers);
 		
 		// Example of Implementation:
-		myInstruments.forEach(e -> System.out.println(e));
-		myTeachers.forEach(e -> System.out.println(e));
+		// myInstruments.forEach(e -> System.out.println(e));
+		// myTeachers.forEach(e -> System.out.println(e));
 
 		
 		return "create_lesson";
@@ -62,11 +74,44 @@ public class CreateLessonController {
 	
 	public List<String> getTeachers() {
 		List<String> list = new ArrayList<>();
-		dtteacherRepository.findAll().forEach(e -> list.add("" + e.getLName() + ", " + e.getFName()));
+		dtteacherRepository.findAll().forEach(e -> list.add(e.getEmail()));
 		return list;
 	}
 	
+	
+	@RequestMapping(value="/create_lesson/submit", method=RequestMethod.POST)
+	public String updateCalendar(Model model,
+			HttpServletRequest request,
+			@RequestParam(value="instruments", required=false) String instrument,
+			@RequestParam(value="teachers", required=false) String teacher,
+			@RequestParam(value="start", required=false) String startTime,
+			@RequestParam(value="length", required=false) String length) {
+		
+		String userEmail = (String) request.getSession().getAttribute("userEmail");
+		DtInstrument dtInstrument = dtinstrumentRepository.findByInstrument(instrument);
+		DtTeacher dtTeacher = dtteacherRepository.findByDsEmail(teacher);
+		
+		DtLesson dtLesson = new DtLesson();
+		dtLesson.setDsParentEmail(userEmail);
+		dtLesson.setDiInstrumentId(dtInstrument.getId());
+		dtLesson.setDsTeacherEmail(dtTeacher.getEmail());
+		
+		dtLessonRepository.save(dtLesson);
+		
+		//System.out.println(dtLesson.getId());
+		/*
+		DtLessonTime dtLessonTime = new DtLessonTime();
+		dtLessonTime.setDiLessonId(dtLesson.getId());
+		dtLessonTime.setDiLength(Integer.parseInt(length));
+		dtLessonTime.setDdLessonDate(startTime);
+		
+		dtLessonTimeRepository.save(dtLessonTime);
+		*/
+		return "calendar";
+	}
+	
 	// All of the below methods will be replaced.
+	
 	@RequestMapping(value="/updateJSON")
 	public String updateCalendar(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String start = request.getParameter("start");
