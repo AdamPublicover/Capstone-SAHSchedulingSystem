@@ -60,7 +60,13 @@
 	        			plugins: ['timeGrid'],
 	        			defaultView: 'timeGridWeek',
 	        			minTime: "08:00:00",
-	        			maxTime: "22:00:00"
+	        			maxTime: "22:00:00",
+	        			eventClick: function(info){
+	        				info.jsEvent.preventDefault();
+	        				if(info.event.url){
+	        					window.open(info.event.url)
+	        				}
+	        			}
 	        		});
 
 	        		
@@ -70,9 +76,9 @@
 	                    var start=result[i].start;
 	                    var startDate = new Date(start);
 	                    var end=result[i].end;
+	                    var url=result[i].url;
 	                    var endDate = new Date(end);
-	                    var event={ title:title, start:startDate, end:endDate};
-	                    //jq('#calendar').fullCalendar('renderEvent', event, true);
+	                    var event={ title:title, start:startDate, end:endDate, url:url};
 	                    calendar.addEvent(event);
 	                }
 	                

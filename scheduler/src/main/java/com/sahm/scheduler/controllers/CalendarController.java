@@ -36,7 +36,6 @@ private static final long serialVersionUID = 1L;
 	@RequestMapping(value="/calendar")
 	public String hello(Model model, HttpServletRequest request) {
 		
-		
 		//getLessons(email, accountType);
 		
 		return "calendar";
@@ -58,7 +57,7 @@ private static final long serialVersionUID = 1L;
 		headers.add("Content-Type", "application/json; charset=utf-8");
 		
 		if (eventList.size() > 0) {
-			return new ResponseEntity<String>(new JSONSerializer().include("id","title","end","start").exclude("*").serialize(eventList), headers, HttpStatus.OK);
+			return new ResponseEntity<String>(new JSONSerializer().include("title","end","start","url").exclude("*").serialize(eventList), headers, HttpStatus.OK);
 		}
 	    return new ResponseEntity<String>(null, headers, HttpStatus.OK);
 	}
@@ -77,11 +76,12 @@ private static final long serialVersionUID = 1L;
 		List<Event> events = new ArrayList<>();
 		eventList.forEach(e -> {
 			Event temp = new Event();
-			temp.id = id;
+//			temp.id = id;
 			temp.title = e.getDsParentEmail();
 			temp.start = e.getStartTimeAsString();
 			temp.end = e.getEndTimeAsString();
-			
+ 			temp.url = "/eventinfo?email=" + e.getDsParentEmail();
+			 
 			System.out.println(temp.start);
 			events.add(temp);
 		});
@@ -104,6 +104,7 @@ private static final long serialVersionUID = 1L;
 			temp.title = e.getDsTeacherEmail();
 			temp.start = e.getStartTimeAsString();
 			temp.end = e.getEndTimeAsString();
+			temp.url = "/eventinfo?email=" + e.getDsTeacherEmail();
 			
 			System.out.println(temp.start);
 			events.add(temp);
@@ -116,9 +117,8 @@ private static final long serialVersionUID = 1L;
 		
 		List<DtLessonTime> eventList = new ArrayList<>();
 		
-		//if (email == "admin@isp.net") {
-			eventList.addAll(dtLessonTimeRepository.findAll());
-		//}
+		eventList.addAll(dtLessonTimeRepository.findAll());
+		
 		int id = 1;
 		List<Event> events = new ArrayList<>();
 		eventList.forEach(e -> {
@@ -127,6 +127,7 @@ private static final long serialVersionUID = 1L;
 			temp.title = e.getDsTeacherEmail();
 			temp.start = e.getStartTimeAsString();
 			temp.end = e.getEndTimeAsString();
+			temp.url = "/eventinfo?email=" + e.getDsParentEmail() +",email2=" + e.getDsTeacherEmail();
 			
 			System.out.println(temp.start);
 			events.add(temp);
