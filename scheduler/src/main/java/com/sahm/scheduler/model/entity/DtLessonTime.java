@@ -1,6 +1,10 @@
 package com.sahm.scheduler.model.entity;
 
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Calendar;
 
 import javax.persistence.Access;
@@ -47,15 +51,14 @@ public class DtLessonTime {
 	public String getDsTeacherEmail() { return this.dsteacheremail; }
 	public int getDiInstrumentId() { return this.diinstrumentid; }
 	public String getStartTimeAsString() { 
-		String date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").format(this.DdLessonDate);
-		return date;
+		//String date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").format(this.DdLessonDate);
+		return this.DdLessonDate.toString();
 	}
 	public String getEndTimeAsString() {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(this.DdLessonDate);
-		calendar.add(Calendar.MINUTE, this.DiLength);
-		String date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").format(calendar);
-		return date;
+		LocalDateTime ldt = this.DdLessonDate.toLocalDateTime();
+		ldt = ldt.plusMinutes(this.DiLength);
+		java.sql.Timestamp endDate = Timestamp.valueOf(ldt);
+		return endDate.toString();
 	}
 	
 	public void setDiLessonId(int DiLessonId) { this.dilessonid = DiLessonId; }

@@ -48,11 +48,11 @@ private static final long serialVersionUID = 1L;
 	public ResponseEntity<String> getCalendarEvents(HttpServletRequest request){
 		String email = (String) request.getSession().getAttribute("userEmail");
 		int accountType = (int) request.getSession().getAttribute("AccountType");
-		
+
 		List<Event> eventList = new ArrayList<>();
 		if (accountType == 2) { eventList = getTeacherLessons(email); }
-		//else if (accountType == 3) { eventList = getParentLessons(email); }
-		//else { eventList = getLessons(email); }
+		else if (accountType == 3) { eventList = getParentLessons(email); }
+		else { eventList = getLessons(email); }
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", "application/json; charset=utf-8");
@@ -82,30 +82,56 @@ private static final long serialVersionUID = 1L;
 			temp.start = e.getStartTimeAsString();
 			temp.end = e.getEndTimeAsString();
 			
+			System.out.println(temp.start);
 			events.add(temp);
 		});
 		
 		return events;
 	}
 	
-	public List<DtLessonTime> getParentLessons(String email) {
+	public List<Event> getParentLessons(String email) {
 		List<Integer> eventIDs = new ArrayList<>();
 		dtLessonRepository.findByDsparentemail(email).forEach(e -> eventIDs.add(e.getId()));
 		
 		List<DtLessonTime> eventList = new ArrayList<>();
 		eventIDs.forEach(e -> eventList.addAll(dtLessonTimeRepository.findByDilessonid(e)));
 		
-		return eventList;
+		int id = 1;
+		List<Event> events = new ArrayList<>();
+		eventList.forEach(e -> {
+			Event temp = new Event();
+			temp.id = id;
+			temp.title = e.getDsTeacherEmail();
+			temp.start = e.getStartTimeAsString();
+			temp.end = e.getEndTimeAsString();
+			
+			System.out.println(temp.start);
+			events.add(temp);
+		});
+		
+		return events;
 	}
 	
-	public List<DtLessonTime> getLessons(String email) {
+	public List<Event> getLessons(String email) {
 		
 		List<DtLessonTime> eventList = new ArrayList<>();
 		
-		if (email == "admin@isp.net") {
+		//if (email == "admin@isp.net") {
 			eventList.addAll(dtLessonTimeRepository.findAll());
-		}
+		//}
+		int id = 1;
+		List<Event> events = new ArrayList<>();
+		eventList.forEach(e -> {
+			Event temp = new Event();
+			temp.id = id;
+			temp.title = e.getDsTeacherEmail();
+			temp.start = e.getStartTimeAsString();
+			temp.end = e.getEndTimeAsString();
+			
+			System.out.println(temp.start);
+			events.add(temp);
+		});
 		
-		return eventList;
+		return events;
 	}	
 }
