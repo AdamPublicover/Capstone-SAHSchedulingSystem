@@ -16,7 +16,7 @@ public class DtInstrument {
 	
 	@Id
 	@Column(name="DiInstrumentId", nullable=false, unique=true)
-	private int DiInstrumentId;
+	private int instrumentid;
 	
 	@Column(name="DsInstrumentName", nullable=false, unique=true)
 	String instrument;
@@ -27,7 +27,7 @@ public class DtInstrument {
 	
 	public DtInstrument() {};
 	
-	public int getId() {return this.DiInstrumentId; }
+	public int getId() {return this.instrumentid; }
 	public String getName() {return this.instrument;}
 	public int getRequiredByTeacher() {return this.DiRequiredByTeacher;}
 	

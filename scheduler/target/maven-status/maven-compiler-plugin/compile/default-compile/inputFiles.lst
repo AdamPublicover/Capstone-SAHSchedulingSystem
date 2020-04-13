@@ -16,9 +16,11 @@ C:\Users\adamp\Desktop\School\Semester 6 - Winter 2020\Capstone\Project\Capstone
 C:\Users\adamp\Desktop\School\Semester 6 - Winter 2020\Capstone\Project\Capstone-SAHSchedulingSystem\scheduler\src\main\java\com\sahm\scheduler\controllers\CreateLessonController.java
 C:\Users\adamp\Desktop\School\Semester 6 - Winter 2020\Capstone\Project\Capstone-SAHSchedulingSystem\scheduler\src\main\java\com\sahm\scheduler\model\repository\DtPasswordRepository.java
 C:\Users\adamp\Desktop\School\Semester 6 - Winter 2020\Capstone\Project\Capstone-SAHSchedulingSystem\scheduler\src\main\java\com\sahm\scheduler\model\repository\TTeacherPlaysInstrumentRepository.java
+C:\Users\adamp\Desktop\School\Semester 6 - Winter 2020\Capstone\Project\Capstone-SAHSchedulingSystem\scheduler\src\main\java\com\sahm\scheduler\model\entity\EventInfo.java
 C:\Users\adamp\Desktop\School\Semester 6 - Winter 2020\Capstone\Project\Capstone-SAHSchedulingSystem\scheduler\src\main\java\com\sahm\scheduler\controllers\CalendarController.java
 C:\Users\adamp\Desktop\School\Semester 6 - Winter 2020\Capstone\Project\Capstone-SAHSchedulingSystem\scheduler\src\main\java\com\sahm\scheduler\model\entity\DtTeacher.java
 C:\Users\adamp\Desktop\School\Semester 6 - Winter 2020\Capstone\Project\Capstone-SAHSchedulingSystem\scheduler\src\main\java\com\sahm\scheduler\controllers\CreateProfileController.java
+C:\Users\adamp\Desktop\School\Semester 6 - Winter 2020\Capstone\Project\Capstone-SAHSchedulingSystem\scheduler\src\main\java\com\sahm\scheduler\controllers\EventInfoController.java
 C:\Users\adamp\Desktop\School\Semester 6 - Winter 2020\Capstone\Project\Capstone-SAHSchedulingSystem\scheduler\src\main\java\com\sahm\scheduler\viewConfiguration.java
 C:\Users\adamp\Desktop\School\Semester 6 - Winter 2020\Capstone\Project\Capstone-SAHSchedulingSystem\scheduler\src\main\java\com\sahm\scheduler\model\entity\DtParent.java
 C:\Users\adamp\Desktop\School\Semester 6 - Winter 2020\Capstone\Project\Capstone-SAHSchedulingSystem\scheduler\src\main\java\com\sahm\scheduler\controllers\DtParentCreateController.java

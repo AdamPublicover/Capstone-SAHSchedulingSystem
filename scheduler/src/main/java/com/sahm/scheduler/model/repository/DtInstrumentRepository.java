@@ -7,4 +7,6 @@ import com.sahm.scheduler.model.entity.DtInstrument;
 
 public interface DtInstrumentRepository extends CrudRepository<DtInstrument, Integer>{
 	DtInstrument findByInstrument(String Instrument);
+	
+	DtInstrument findByInstrumentid(int instrumentid);
 }

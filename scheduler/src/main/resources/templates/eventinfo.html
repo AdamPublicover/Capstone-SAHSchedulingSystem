@@ -46,23 +46,23 @@
 								<tbody>
 									<tr>
 										<td>Parent:</td>
-										<td>example@hotmail.com</td>
+										<td th:text="${eventInfo.parent}"></td>
 									</tr>
 									<tr>
 										<td>Teacher:</td>
-										<td>adampub@gmail.com</td>
+										<td th:text="${eventInfo.teacher}"></td>
 									</tr>
 									<tr>
 										<td>Instrument: </td>
-										<td>Guitar</td>
+										<td th:text="${eventInfo.instrument}"></td>
 									</tr>
 									<tr>
 										<td>Date:</td>
-										<td>April 11th, 2020</td>
+										<td th:text="${eventInfo.date}"></td>
 									</tr>
 									<tr>
 										<td>Length:</td>
-										<td>180 Minutes</td>
+										<td th:text="${eventInfo.length}"></td>
 									</tr>
 								</tbody>
 							  </table>
