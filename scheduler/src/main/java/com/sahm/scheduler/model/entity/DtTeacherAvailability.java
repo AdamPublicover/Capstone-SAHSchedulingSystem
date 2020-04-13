@@ -17,7 +17,8 @@ public class DtTeacherAvailability {
 	private int DiTeacherAvailabilityId;
 	
 	@Column(name="DsTeacherEmail", nullable=false, unique=false)
-	private String DsTeacherEmail;
+	private String dsteacheremail;
+	
 	private int DiMOffStart;
 	private int DiMOffEnd;
 	private int DiTOffStart;
@@ -35,7 +36,7 @@ public class DtTeacherAvailability {
 	
 	public DtTeacherAvailability() {}
 	
-	public void setDsTeacherEmail(String DsTeacherEmail) {this.DsTeacherEmail = DsTeacherEmail;}
+	public void setDsTeacherEmail(String DsTeacherEmail) {this.dsteacheremail = DsTeacherEmail;}
 	public void setDiMOffStart(int DiMOffStart) {this.DiMOffStart = DiMOffStart; }
 	public void setDiMOffEnd(int DiMOffEnd) { this.DiMOffEnd = DiMOffEnd; }
 	public void setDiTOffStart(int DiTOffStart) { this.DiTOffStart = DiTOffStart; }
@@ -52,7 +53,7 @@ public class DtTeacherAvailability {
 	public void setDiSunOffEnd(int DiSunOffEnd) { this.DiSunOffEnd = DiSunOffEnd; }
 	
 	public int getDiTeacherAvailabilityId() { return this.DiTeacherAvailabilityId; }
-	public String getDsTeacherEmail() { return this.DsTeacherEmail;}
+	public String getDsTeacherEmail() { return this.dsteacheremail;}
 	public int getDiMOffStart() { return this.DiMOffStart; }
 	public int getDiMOffEnd() { return this.DiMOffEnd; }
 	public int getDiTOffStart() { return this.DiTOffStart; }
