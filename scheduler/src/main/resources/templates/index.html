@@ -1,48 +1,62 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<title>Stay at Home Music Scheduler</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href="/styles/index.css">
+	<link rel="stylesheet" href="/styles/index.css">
 </head>
 
 <style>
+	#error_msg {
+		color: red;
+		text-align: center;
+		margin: 10px auto;
+	}
+</style>
 
-
-</style>	
-<body>	
+<body>
 	<table class="centre-login-form">
-		<tr>	
+		<tr>
 			<th>
 				<div class="jumbotron jumbotron-fluid" id="title">
 					<h1 class="display-4">Stay at Home Music Scheduler</h1>
-					<p class="lead">This tool was created to help parents and teachers better visualize a schedule of 
-					                the lessons they have booked with Stay at Home Music.</p>
+					<p class="lead">This tool was created to help parents and teachers better visualize a schedule of
+						the lessons they have booked with Stay at Home Music.</p>
 					<hr class="my-4">
-			  		<p>Please log in to view and access the tool.</p>
+					<p>Please log in to view and access the tool.</p>
 				</div>
 			</th>
 		</tr>
 		<tr>
 			<th>
 				<div id="login">
+					<div id="error_msg"></div>
 					<form method="post" action="login">
 						<div class=form-group>
 							<label for="exampleInputEmail1">Email address</label>
-			    			<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email address" name="email" required>
-			    			<small id="emailHelp" class="form-text text-muted">This is usually the email address you used to contact Stay at Home Music.</small>
-			    		</div>
-			    		<div class="form-group">
-			    			<label for="exampleInputPassword1">Password</label>
-			    			<input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
-			  			</div>
-			  			<button type="submit" class="btn btn-primary">Submit</button>
+							<input type="email" class="form-control" id="exampleInputEmail1"
+								aria-describedby="emailHelp" placeholder="Email" name="email"
+								pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+							<small id="emailHelp" class="form-text text-muted">This is usually the email address you
+								used to contact Stay at Home Music.</small>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Password</label>
+							<input type="password" placeholder="Password" class="form-control"
+								id="exampleInputPassword1" name="password" required>
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
 					</form>
-				</div> 	
+				</div>
 			</th>
 		</tr>
 	</table>
 </body>
+
 </html>

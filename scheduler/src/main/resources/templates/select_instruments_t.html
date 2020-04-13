@@ -52,7 +52,7 @@
 						<a class="dropdown-item" href="/calendar">Calendar</a>
 						<a class="dropdown-item" href="/create_profile_a">Create Profile</a>
 						<a class="dropdown-item" href="/create_lesson">Create Lesson</a>
-						<a class="dropdown-item" href="#">View All Requests</a>
+						<!---<a class="dropdown-item" href="#">View All Requests</a>--->
 					</div>
 				</li>
 				<li class="nav-item dropdown">
@@ -97,30 +97,30 @@
 		<tr>
 			<th>
 				<div id="lesson">
-					<form action="/select_instruments_t/update_instruments" method="POST">						
-			  			<div class="form-group">
-			  				<p>Select all that apply:</p>
-			  				<input type="checkbox" id="guitar" name="guitar" value="guitar">
-			  				<label for="guitar">Guitar</label><br>
-			  				<input type="checkbox" id="piano" name="piano" value="piano">
-			  				<label for="piano">Piano</label><br>
-			  				<input type="checkbox" id="ukulele" name="ukulele" value="ukulele">
-			  				<label for="ukulele">Ukulele</label><br>
-			  				<input type="checkbox" id="drums" name="drums" value="drums">
-			  				<label for="drums">Drums</label><br>
-			  				<input type="checkbox" id="mandolin" name="mandolin" value="mandolin">
-			  				<label for="mandolin">Mandolin</label><br>
-			  				<input type="checkbox" id="vocals" name="vocals" value="vocals">
-			  				<label for="vocals">Vocals</label><br>
-			  				<input type="checkbox" id="trumpet" name="trumpet" value="trumpet">
-			  				<label for="trumpet">Trumpet</label><br>
-			  				<input type="checkbox" id="violin" name="violin" value="violin">
-			  				<label for="violin">Violin</label><br>
-			  				<input type="checkbox" id="bass" name="bass" value="bass">
-			  				<label for="bass">Bass</label><br>
-			  			</div>
-			  			<!-- Beth: right now this button doesn't submit, will once db and calendar implemented -->
-			  			<button type="submit" class="btn btn-primary">Submit</button>
+					<form action="/select_instruments_t/update_instruments" method="POST">
+						<div class="form-group">
+							<p>Select all that apply:</p>
+							<input type="checkbox" id="guitar" name="guitar" value="guitar">
+							<label for="guitar">Guitar</label><br>
+							<input type="checkbox" id="piano" name="piano" value="piano">
+							<label for="piano">Piano</label><br>
+							<input type="checkbox" id="ukulele" name="ukulele" value="ukulele">
+							<label for="ukulele">Ukulele</label><br>
+							<input type="checkbox" id="drums" name="drums" value="drums">
+							<label for="drums">Drums</label><br>
+							<input type="checkbox" id="mandolin" name="mandolin" value="mandolin">
+							<label for="mandolin">Mandolin</label><br>
+							<input type="checkbox" id="vocals" name="vocals" value="vocals">
+							<label for="vocals">Vocals</label><br>
+							<input type="checkbox" id="trumpet" name="trumpet" value="trumpet">
+							<label for="trumpet">Trumpet</label><br>
+							<input type="checkbox" id="violin" name="violin" value="violin">
+							<label for="violin">Violin</label><br>
+							<input type="checkbox" id="bass" name="bass" value="bass">
+							<label for="bass">Bass</label><br>
+						</div>
+						<!-- Beth: right now this button doesn't submit, will once db and calendar implemented -->
+						<button type="submit" class="btn btn-primary">Submit</button>
 				</div>
 			</th>
 		</tr>

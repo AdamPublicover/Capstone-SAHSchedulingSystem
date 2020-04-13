@@ -45,10 +45,11 @@ public class HomeController {
 			}			
 			
 		} catch (Exception e) {
-			System.out.println(e.toString());
-			return "index";
+			System.out.println("Username or password is incorrect.");
 		}
-		
+		System.out.println("Username or password is incorrect.");
+
 		return "index";
+		
 	}
 }
