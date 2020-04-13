@@ -21,29 +21,57 @@
 
 <body>
 
-	<table>
+
+
+
+	<table class="centre-login-form">
 		<tr>
-			<td>Parent:</td>
-			<td>example@hotmail.com</td>
+			<th>
+				<div class="jumbotron jumbotron-fluid" id="title">
+
+					<h1 class="display-4">Event Information</h1>
+					<p class="lead">Viewing the event selected on the calendar page.
+						<br>
+						Please exit this tab to return to the calendar page.
+					</p>
+				</div>
+			</th>
 		</tr>
 		<tr>
-			<td>Teacher:</td>
-			<td>adampub@gmail.com</td>
-		</tr>
-		<tr>
-			<td>Instrument:</td>
-			<td>Guitar</td>
-		</tr>
-		<tr>
-			<td>Date:</td>
-			<td>April 11th, 2020</td>
-		</tr>
-		<tr>
-			<td>Length:</td>
-			<td>180 Minutes</td>
+			<th>
+				<div id="lesson">
+					<form action="/select_instruments_t/update_instruments" method="POST">
+						<div class="form-group">
+							<table class="table table-hover">
+								<tbody>
+									<tr>
+										<td>Parent:</td>
+										<td>example@hotmail.com</td>
+									</tr>
+									<tr>
+										<td>Teacher:</td>
+										<td>adampub@gmail.com</td>
+									</tr>
+									<tr>
+										<td>Instrument: </td>
+										<td>Guitar</td>
+									</tr>
+									<tr>
+										<td>Date:</td>
+										<td>April 11th, 2020</td>
+									</tr>
+									<tr>
+										<td>Length:</td>
+										<td>180 Minutes</td>
+									</tr>
+								</tbody>
+							  </table>
+						</div>
+					</form>
+				</div>
+			</th>
 		</tr>
 	</table>
-
 </body>
 
 </html>
